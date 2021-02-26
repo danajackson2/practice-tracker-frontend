@@ -13,3 +13,41 @@ export const setCurrentUser = (user) => {
         user: user
     }
 }
+
+export const handleLongtones = (e) => {
+    return {
+        type: 'HANDLE_LONGTONES',
+        longtone: e.target.name,
+        checked: e.target.checked
+    }
+}
+
+export const handleItems = (item, key) => {
+    return {
+        type: 'HANDLE_ITEMS',
+        item: item,
+        key: key
+    }
+}
+
+export const handleNotes = (text) => {
+    return {
+        type: 'HANDLE_NOTES',
+        text: text
+    }
+}
+
+export const handleRecording = (recording) => {
+    return {
+        type: 'HANDLE_RECORDING',
+        recording: recording
+    }
+}
+
+export const handleRating = (rating, kind) => {
+    return {
+        type: 'HANDLE_RATING',
+        rating: rating,
+        kind: kind
+    }
+}

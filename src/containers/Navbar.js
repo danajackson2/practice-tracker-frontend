@@ -16,9 +16,9 @@ const Navbar = (props) => {
     const {username, instrument} = props.state.current_user
     return(
         <div>
-            <NavLink to='/'><h1 style={{textAlign:'center'}}>PracTrac</h1></NavLink>
-            <h4 style={{textAlign:'center'}}>{username ? `Hi, ${username }, time to practice your ${instrument}!` : ''}</h4>
-            <nav className="navbar navbar-expand-lg navbar-light bg-light">
+            <NavLink id='top-name' to='/'><h1 >PracTrac</h1></NavLink>
+            <h4 style={{textAlign:'center', color:'white'}}>{username ? `Hi, ${username }, time to practice your ${instrument}!` : ''}</h4>
+            <nav className="navbar navbar-custom navbar-expand-lg navbar-dark">
                 <div className="container-fluid">
                     <button className="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                         <span className="navbar-toggler-icon"></span>
@@ -31,7 +31,7 @@ const Navbar = (props) => {
                                 <li className='btn nav-item'><NavLink to='/past-sessions'>Past Sessions</NavLink></li>
                             </ul >
                             <ul className="navbar-nav ms-auto mb-2 mb-lg-0">
-                                <li className="nav-item"><button className='btn ms-auto' onClick={logout}>Log Out</button></li>
+                                <li className="nav-item btn ms-auto"><button className='btn' onClick={logout}>Log Out</button></li>
                             </ul>
                         </>
                         :

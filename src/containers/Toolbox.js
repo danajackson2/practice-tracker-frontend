@@ -5,7 +5,7 @@ import Drones from '../components/Drones'
 
 function Toolbox(){
     return(
-        <div>
+        <div id='toolbox-div' className='col-3'>
             <h2>Toolbox</h2>
             <Metronome />
             <Tuner />

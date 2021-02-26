@@ -5,3 +5,158 @@
 .menu-item {
   margin: 10px;
 }
+
+#welcome-div {
+  border-style: solid;
+  border-width:1px;
+  border-color: white;
+  height: 100vh;
+  width: 70vw;
+  margin: auto;
+  margin-top: 20px;
+  padding: 10px;
+}
+
+#top-name {
+  text-align:center; 
+  color:#DA7B93;
+  text-decoration: none;
+  font-size: 50px;
+}
+
+.navbar-custom {
+  background-color: #376E6F; 
+}
+
+#toolbox-div {
+  border-style: solid;
+  border-width:1px;
+  border-color: white;
+}
+
+#new-session-div {
+  border-style: solid;
+  border-width:1px;
+  border-color: white;
+  text-align: center;
+}
+
+#timer-button {
+  width:25%; 
+  margin:5px;
+  float: left
+}
+
+#timer-count {
+  height: 100%;
+  margin-bottom: 0px;
+  float: right;
+}
+
+.blinking {
+  -webkit-animation: 1s blink ease infinite;
+  -moz-animation: 1s blink ease infinite;
+  -ms-animation: 1s blink ease infinite;
+  -o-animation: 1s blink ease infinite;
+  animation: 1s blink ease infinite; 
+}
+@keyframes blink {
+  from, to {
+    opacity: 0;
+  }
+  50% {
+    opacity: 1;
+  }
+}
+@-moz-keyframes blink {
+  from, to {
+    opacity: 0;
+  }
+  50% {
+    opacity: 1;
+  }
+}
+@-webkit-keyframes blink {
+  from, to {
+    opacity: 0;
+  }
+  50% {
+    opacity: 1;
+  }
+}
+@-ms-keyframes blink {
+  from, to {
+    opacity: 0;
+  }
+  50% {
+    opacity: 1;
+  }
+}
+@-o-keyframes blink {
+  from, to {
+    opacity: 0;
+  }
+  50% {
+    opacity: 1;
+  }
+}
+
+.slidecontainer {
+  width: 100%; /* Width of the outside container */
+}
+.slider {
+  -webkit-appearance: none;  /*Override default CSS styles*/
+  appearance: none;
+  width: 100%; /* Full-width */
+  height: 10px; /* Specified height */
+  border-radius: 5px;
+  background: #376E6F; /* Grey background */
+  outline: none; /* Remove outline */
+  opacity: 0.7; /* Set transparency (for mouse-over effects on hover) */
+  -webkit-transition: .2s; /* 0.2 seconds transition on hover */
+  transition: opacity .2s;
+}
+.slider:hover {
+  opacity: 1; /* Fully shown on mouse-over */
+}
+/* The slider handle (use -webkit- (Chrome, Opera, Safari, Edge) and -moz- (Firefox) to override default look) */
+.slider::-webkit-slider-thumb {
+  appearance: none; /* Override default look */
+  width: 30px; /* Set a specific slider handle width */
+  height: 30px; /* Slider handle height */
+  border-radius: 15px;
+  background: white; /* Green background */
+  cursor: pointer; /* Cursor on hover */
+}
+.slider::-moz-range-thumb {
+  width: 30px; /* Set a specific slider handle width */
+  height: 25px; /* Slider handle height */
+  background: #4CAF50; /* Green background */
+  cursor: pointer; /* Cursor on hover */
+}
+
+.metronome {
+  padding: 10px;
+  max-width: 375px;
+  margin: 0 auto;
+}
+  .bpm-slider input {
+      width: 100%;
+      margin: 10px;
+  }
+
+  button {
+      background: #DA7B93;
+      padding: 10px;
+      border: 1px solid white;
+      border-radius: 2px;
+      width: 100px;
+      color: #fff;
+      font-size: 18px;
+      margin: 0 auto;
+  }
+
+  .bpm-input {
+      width: 25%;
+      margin: 0 auto;
+  }
