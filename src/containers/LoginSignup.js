@@ -8,9 +8,9 @@ function LoginSignup(props){
 
     const handleAuthResponse = (data) => {
         if (data.username) {
-            const { username, id, instrument, token } = data
+            const { username, user_id, instrument, token } = data
             localStorage.setItem('token', token)
-            props.setCurrentUser({username, instrument, id})
+            props.setCurrentUser({username, instrument, user_id})
             props.historyRouterProp.push('/new-session')
         } else {
             alert(data.error)

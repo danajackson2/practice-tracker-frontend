@@ -5,11 +5,11 @@ import {handleLongtones, handleItems, handleNotes, handleRating} from '../redux/
 import {connect} from 'react-redux'
 
 const notes =["A", "B♭", "B", "C", "C♯", "D", "E♭", "E", "F", "F♯", "G", "A♭"] 
+const BASE_URL = 'http://localhost:3000'
 
 function NewSession(props){
 
     const addRmvScale = e => {
-        e.stopPropagation()
         let note = e.target.previousElementSibling.previousElementSibling.value
         let quality = e.target.previousElementSibling.value
         props.handleItems(`${note} ${quality}`, 'scales')
@@ -38,22 +38,35 @@ function NewSession(props){
                 props.handleItems(item, key)
             }
         }
+        Array.from(e.target.parentElement.querySelectorAll('input')).forEach(input => input.value = '')
     }
 
-    const saveSession = (e, time) => {
+    const saveSession = (e, user_id, date, duration) => {
         e.preventDefault()
-        //fetch to back end with session
-        console.log('it worked', time)
+        fetch(`${BASE_URL}/sessions`, {
+            method: 'POST',
+            headers: {'content-type':'application/json', Authorization: `Bearer ${localStorage.token}`},
+            body: JSON.stringify({session: {...props.session, date: date, duration: duration, user_id: user_id}})
+        })
+        .then(res => res.json())
+        // .then(data => {
+        //     fetch('http://localhost:3000/add-recording',{
+        //         method: 'POST',
+        //         headers: {Authorization: `Bearer ${localStorage.token}`},
+        //         body: {recordings: props.recordings, session_id: data.session_id}
+        //     })
+        // })
+        .then(data => alert(data.message))
     }
 
     return(
         <div id='new-session-div' className='col-9'>
             <h2>New Session</h2>
             <div className='container'>
-                <form onSubmit={e => saveSession(e, document.getElementById('timer-count').textContent)}>
+                <form onSubmit={e => saveSession(e, props.user_id, document.getElementById('current-date').textContent, document.getElementById('timer-count').textContent)}>
                     <div className='row justify-content-around'>
                         <div className='col-5' style={{borderColor:'white', borderWidth:'1px', borderStyle:'solid'}}>
-                            <h3>{String(new Date()).split(' ').slice(0,4).join(' ')}</h3>
+                            <h3 id='current-date'>{String(new Date()).split(' ').slice(0,4).join(' ')}</h3>
                         </div>
                         <div className='col-5' style={{borderColor:'white', borderWidth:'1px', borderStyle:'solid'}}>
                             <Timer />
@@ -134,12 +147,12 @@ function NewSession(props){
                     </div>
                     <div className='row'>
                     <div className='col' style={{borderColor:'white', borderWidth:'1px', borderStyle:'solid'}}>
-                        <h4>Productivity : {props.prodRating}/10</h4>
-                        <input type="range" min="1" max="10" defaultValue='5' className="slider" onChange={e => props.handleRating(e.target.value, 'prodRating')}/>
+                        <h4>Productivity : {props.prod_rating}/10</h4>
+                        <input type="range" min="1" max="10" defaultValue='5' className="slider" onChange={e => props.handleRating(e.target.value, 'prod_rating')}/>
                     </div>
                     <div className='col' style={{borderColor:'white', borderWidth:'1px', borderStyle:'solid'}}>
-                        <h4>Focus : {props.focusRating}/10</h4>
-                        <input type="range" min="1" max="10" defaultValue='5' className="slider" onChange={e => props.handleRating(e.target.value, 'focusRating')}/>
+                        <h4>Focus : {props.focus_rating}/10</h4>
+                        <input type="range" min="1" max="10" defaultValue='5' className="slider" onChange={e => props.handleRating(e.target.value, 'focus_rating')}/>
                     </div>
                     </div>
                     <button type='submit' className='btn btn-outline-light'>Save Session</button>
@@ -155,8 +168,11 @@ const mapStateToProps = state => {
         etudes: state.session.etudes,
         pieces: state.session.pieces,
         excerpts: state.session.excerpts,
-        prodRating: state.session.prodRating,
-        focusRating: state.session.focusRating
+        prod_rating: state.session.prod_rating,
+        focus_rating: state.session.focus_rating,
+        session: state.session,
+        user_id: state.current_user.user_id,
+        recordings: state.session.recordings
     }
 }
 

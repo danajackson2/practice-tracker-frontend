@@ -17,8 +17,8 @@ class App extends React.Component {
     })
     .then(res => res.json())
     .then(data => {
-      const { username, id, instrument } = data
-      data.username && this.props.setCurrentUser({username, id, instrument})
+      const { username, user_id, instrument } = data
+      data.username && this.props.setCurrentUser({username, user_id, instrument})
     })
   }
 

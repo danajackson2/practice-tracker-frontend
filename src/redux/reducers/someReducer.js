@@ -16,8 +16,8 @@ const initialState = {
         pieces: [],
         excerpts: [],
         notes: '',
-        prodRating: 0,
-        focusRating: 0,
+        prod_rating: 0,
+        focus_rating: 0,
         recordings: []
     }
 }
@@ -51,7 +51,6 @@ const someReducer = (state=initialState, action) => {
             } else if (action.key === 'etudes'){
                 newArray = state.session.etudes.filter(e => e.composer !== action.item.composer || e.book !== action.item.book || e.number !== action.item.number)
                 addItem = newArray.length === state.session.etudes.length
-                // addItem = state.session.etudes.filter(e => e.composer === action.item.composer && e.book === action.item.book && e.number === action.item.number).length === 0
             } else if (action.key === 'pieces'){
                 newArray = state.session.pieces.filter(e => e.composer !== action.item.composer || e.title !== action.item.title)
                 addItem = newArray.length === state.session.pieces.length
