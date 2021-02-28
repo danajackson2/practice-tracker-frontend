@@ -4,7 +4,7 @@ import {connect} from 'react-redux'
 // npm install mic-recorder-to-mp3
 const MicRecorder = require('mic-recorder-to-mp3')
 const recorder = new MicRecorder({bitRate: 128})
-// let formData = new FormData()
+let formData = new FormData()
 class Recording extends React.Component {
 
     state = {
@@ -22,15 +22,15 @@ class Recording extends React.Component {
     stopRecording = () => {
         recorder.stop()
         .getMp3()
+        // .then(mp3 => this.props.handleRecording(mp3))
         .then(([buffer, blob]) => {
             const file = new File(buffer, 'recording.mp3', {
                 type: blob.type,
                 lastModified: Date.now()
             })
             this.setState({recording: file})
-            // formData.append('recording', blob)
+            formData.append('recording', blob)
         })
-        debugger
         // .catch((e) => {
         //     alert('We could not retrieve your message')
         //     console.log(e)
@@ -48,7 +48,14 @@ class Recording extends React.Component {
     saveRecording = () => {
         
         if (!!this.state.recording){
-            this.props.handleRecording(this.state.recording)
+            // this.props.handleRecording(this.state.recording)
+            fetch('http://localhost:3000/recordings',{
+                method: 'POST',
+                headers: {Authorization: `Bearer ${localStorage.token}`},
+                body: formData
+            })
+            .then(res => res.json())
+            .then(console.log)
         }
     }
 
@@ -73,10 +80,5 @@ class Recording extends React.Component {
     }
 }
 
-const mapStateToProps = state => {
-    return {
-        user_id: state.current_user.user_id
-    }
-}
 
-export default connect(mapStateToProps, {handleRecording})(Recording)
+export default connect(null, {handleRecording})(Recording)
