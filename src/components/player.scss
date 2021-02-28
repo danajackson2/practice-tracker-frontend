@@ -2,31 +2,16 @@
     box-sizing: border-box;
   }
   
-  body {
-    background-size: 6px 6px !important;
-    background-image: linear-gradient(-45deg, rgba(0, 0, 0, 0) 46%, coral 49%, coral 51%, rgba(0, 0, 0, 0) 55%);
-    background-color: white;
-    padding-top: 60px;
-  }
-  
   .audio-player {
-    width: 470px;
-    padding: 35px 20px;
+    width: 100%;
+    padding: 5px 5px;
     margin: auto;
-    background-color: white;
-    border: 1px solid black;
   
     .player-controls {
       position: relative;
       display: flex;
       justify-content: space-between;
       align-items: center;
-    }
-  
-    #radioIcon {
-      width: 30px;
-      height: 30px;
-      background: url('https://image.flaticon.com/icons/svg/149/149429.svg') no-repeat center;
     }
   
     #playAudio {
@@ -52,6 +37,7 @@
   
       small {
         font-size: 10px;
+        color: white;
       }
     }
   
@@ -73,7 +59,7 @@
           left: 0;
           top: 0;
           height: 100%;
-          background-color: coral;
+          background-color: #DA7B93;
         }
       }
     }

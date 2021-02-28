@@ -14,8 +14,9 @@ function Player(props){
     currentTime: 'currentTime'
     };
 
-    function togglePlay() {
-    if (media.paused === false) {
+    function togglePlay(e) {
+        e.preventDefault()
+    if (!media.paused) {
         media.pause();
         $(ui.play).classList.remove('pause');
     } else {
@@ -40,7 +41,8 @@ function Player(props){
     return currentTimeFormatted;
     }
 
-    function initProgressBar() {
+    function initProgressBar(e) {
+        e.preventDefault()
     const currentTime = calculateCurrentValue(media.currentTime);
     $(ui.currentTime).innerHTML = currentTime;
     $(ui.seekObj).addEventListener('click', seek);
@@ -59,22 +61,15 @@ function Player(props){
     calculatePercentPlayed();
     }
 
-    $(ui.play).addEventListener('click', togglePlay)
-    $(ui.audio).addEventListener('timeupdate', initProgressBar);
+    // $(ui.play).addEventListener('click', togglePlay)
+    // $(ui.audio).addEventListener('timeupdate', initProgressBar);
 
     
-    const audioElement = (url) => {
-        let player = new Audio(url)
-        player.id = 'audio'
-        return player
-    }
-
     return (
-        <div class="audio-player">
-            {audioElement(props.url)}
-            <div class="player-controls">
-                <div id="radioIcon"></div>
-                <button id="playAudio">p</button>
+        <div className="audio-player">
+            <audio src={props.data.url} id='audio' onTimeUpdate={e => initProgressBar(e)}/>
+            <div className="player-controls">
+                <button id="playAudio" onClick={e => togglePlay(e)}></button>
                 <div id="seekObjContainer">
                     <div id="seekObj">
                         <div id="percentage"></div>

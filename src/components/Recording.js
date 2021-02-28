@@ -9,7 +9,7 @@ class Recording extends React.Component {
     state = {
         blinking: false,
         recording: null,
-        urls: []
+        rec_data: []
     }
 
     startRecording = () => {
@@ -41,7 +41,6 @@ class Recording extends React.Component {
         if (!!this.state.recording){
             const player = new Audio(URL.createObjectURL(this.state.recording))
             player.id='audioplayer'
-            console.log(player)
             player.play()
         }
     }
@@ -54,7 +53,8 @@ class Recording extends React.Component {
                 body: formData
             })
             .then(res => res.json())
-            .then(data => this.setState({urls: [...this.state.urls, data.url]}))
+            .then(data => this.setState({rec_data: [...this.state.rec_data, data]}))
+            // data.url
         }
         formData = new FormData()
     }
@@ -71,11 +71,12 @@ class Recording extends React.Component {
                 </svg>   
                 }   
                 <h4 style={{float:'left'}}>Recording</h4>
+                {/* give recording title */}
                 <button className='btn btn-outline-light' type='button' onClick={this.startRecording}>Start</button>
                 <button className='btn btn-outline-light' type='button' onClick={this.stopRecording}>Stop</button>
                 <button className='btn btn-outline-light' type='button' onClick={this.playRecording}>Play</button>
                 <button className='btn btn-outline-light' type='button' onClick={this.saveRecording}>Save</button>
-                {this.state.urls.map(url => <Player url={url}/>)}
+                {this.state.rec_data.map(data => <Player data={data}/>)}
             </div>
         )
     }
