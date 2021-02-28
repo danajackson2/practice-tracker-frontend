@@ -1,4 +1,5 @@
 import React from 'react'
+import Player from './Player'
 // npm install mic-recorder-to-mp3
 const MicRecorder = require('mic-recorder-to-mp3')
 const recorder = new MicRecorder({bitRate: 128})
@@ -7,7 +8,8 @@ class Recording extends React.Component {
 
     state = {
         blinking: false,
-        recording: null
+        recording: null,
+        urls: []
     }
 
     startRecording = () => {
@@ -38,6 +40,8 @@ class Recording extends React.Component {
     playRecording = () => {
         if (!!this.state.recording){
             const player = new Audio(URL.createObjectURL(this.state.recording))
+            player.id='audioplayer'
+            console.log(player)
             player.play()
         }
     }
@@ -50,12 +54,9 @@ class Recording extends React.Component {
                 body: formData
             })
             .then(res => res.json())
-            .then(data => {
-                const player1 = new Audio(data.url)
-                player1.play()
-                formData = new FormData()
-            })
+            .then(data => this.setState({urls: [...this.state.urls, data.url]}))
         }
+        formData = new FormData()
     }
 
     render(){
@@ -74,6 +75,7 @@ class Recording extends React.Component {
                 <button className='btn btn-outline-light' type='button' onClick={this.stopRecording}>Stop</button>
                 <button className='btn btn-outline-light' type='button' onClick={this.playRecording}>Play</button>
                 <button className='btn btn-outline-light' type='button' onClick={this.saveRecording}>Save</button>
+                {this.state.urls.map(url => <Player url={url}/>)}
             </div>
         )
     }
