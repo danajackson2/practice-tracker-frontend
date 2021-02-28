@@ -49,13 +49,18 @@ class Recording extends React.Component {
         
         if (!!this.state.recording){
             // this.props.handleRecording(this.state.recording)
-            fetch('http://localhost:3000/recordings',{
+            return fetch('http://localhost:3000/recordings',{
                 method: 'POST',
-                headers: {Authorization: `Bearer ${localStorage.token}`},
+                headers: {
+                      Authorization: `Bearer ${localStorage.token}`},
                 body: formData
             })
             .then(res => res.json())
-            .then(console.log)
+            // .then(data => console.log(data.url))
+            .then(data => {
+                const player1 = new Audio(data.url)
+                player1.play()
+            })
         }
     }
 
