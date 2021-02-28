@@ -1,4 +1,4 @@
-import React from 'react'
+import React, {useEffect} from 'react'
 import Recording from '../components/Recording' 
 import Timer from '../components/Timer'
 import {handleLongtones, handleItems, handleNotes, handleRating} from '../redux/actions/actions'
@@ -8,6 +8,16 @@ const notes =["A", "B♭", "B", "C", "C♯", "D", "E♭", "E", "F", "F♯", "G",
 const BASE_URL = 'http://localhost:3000'
 
 function NewSession(props){
+
+    // useEffect(() => {
+    //     fetch(`${BASE_URL}/instEtudes`,{
+    //         method: 'POST',
+    //         headers: {'content-type':'application/json', Authorization:`Bearer ${localStorage.token}`},
+    //         body: JSON.stringify({user_id:props.user_id})
+    //     })
+    //     .then(res => res.json())
+    //     .then(console.log)
+    // })
 
     const addRmvScale = e => {
         let note = e.target.previousElementSibling.previousElementSibling.value
@@ -49,44 +59,37 @@ function NewSession(props){
             body: JSON.stringify({session: {...props.session, date: date, duration: duration, user_id: user_id}})
         })
         .then(res => res.json())
-        // .then(data => {
-        //     fetch('http://localhost:3000/add-recording',{
-        //         method: 'POST',
-        //         headers: {Authorization: `Bearer ${localStorage.token}`},
-        //         body: {recordings: props.recordings, session_id: data.session_id}
-        //     })
-        // })
         .then(data => alert(data.message))
     }
 
     return(
-        <div id='new-session-div' className='col-9'>
-            <h2>New Session</h2>
+        <div id='new-session-div' className='col-9' style={{width:'850px'}}>
+            <h1 style={{padding:'0px 0px 20px 0px'}}>Practice Session</h1>
             <div className='container'>
                 <form onSubmit={e => saveSession(e, props.user_id, document.getElementById('current-date').textContent, document.getElementById('timer-count').textContent)}>
                     <div className='row justify-content-around'>
-                        <div className='col-5' style={{borderColor:'white', borderWidth:'1px', borderStyle:'solid'}}>
+                        <div className='col-5' >
                             <h3 id='current-date'>{String(new Date()).split(' ').slice(0,4).join(' ')}</h3>
                         </div>
-                        <div className='col-5' style={{borderColor:'white', borderWidth:'1px', borderStyle:'solid'}}>
+                        <div className='col-5' >
                             <Timer />
                         </div>
                     </div>
+                    <hr/>
                     <div className='row'>
-                        <div className='col' style={{borderColor:'white', borderWidth:'1px', borderStyle:'solid'}}>
-                            <div style={{borderColor:'white', borderWidth:'1px', borderStyle:'solid'}}>
+                        <div className='col' >
+                            <div style={{padding:'0px 0px 50px 0px'}}>
                                 <h4 style={{float:'left'}}>Longtones</h4>
                                 {notes.map(note => {
                                     return <>
-                                        <label htmlFor={`${note}`}>{`${note}`}</label>
+                                        <label htmlFor={`${note}`} style={{fontSize:'22px'}}>{`${note}`}</label>
                                         <input onChange={props.handleLongtones} type='checkbox' name={`${note}`} style={{marginRight:'15px'}}/>
                                     </>
                                 })}
                             </div>
-                            <div style={{borderColor:'white', borderWidth:'1px', borderStyle:'solid'}}>
+                            <div style={{padding:'0px 0px 50px 0px'}}>
                                 <h4 style={{float:'left'}}>Scales</h4>
-                                <span >{props.scales[0] ? props.scales.map(scale => <p style={{color:'white'}}>{`${scale}`}</p>) : ' '}</span>
-                                <div >
+                                <div style={{padding:'5px 5px 20px 5px'}}>
                                     <select>
                                         {notes.map(note => <option value={`${note}`}>{`${note}`}</option>)}
                                     </select>
@@ -94,23 +97,30 @@ function NewSession(props){
                                         <option value='maj'>maj</option>
                                         <option value='min'>min</option>
                                     </select>
-                                    <button type='button' className='btn btn-outline-light' onClick={addRmvScale}>Add/Rmv</button>
+                                    <button type='button' className='btn btn-sm btn-outline-light' onClick={addRmvScale}>Add/Rmv</button>
                                 </div>
-                            </div><br/>
-                            <div style={{borderColor:'white', borderWidth:'1px', borderStyle:'solid'}}>
-                                <h4 style={{float:'left'}}>Etudes</h4>
-                                <span >{props.etudes[0] ? props.etudes.map(etude => <p >{`${etude.composer}, ${etude.book} #${etude.number}`}</p>) : ' '}</span>
-                                <select>
-                                    {props.etudes.map(etude => <option>{`${etude.composer}, ${etude.book} #${etude.number}`}</option>)}
-                                </select>
-                                <button className='btn btn-outline-light' type='button' onClick={(e) => addRmvPieceExcEt(e, 'dropdown', 'etudes')}>Add/Rmv</button>
-                                <div>
-                                    <input name='composer' placeholder='Composer' />
-                                    <input name='book' placeholder='Book'/>    
-                                    <input name='number' type='Number' placeholder='number'/>     
-                                </div>
-                                <button className='btn btn-outline-light' type='button' onClick={(e) => addRmvPieceExcEt(e, 'input', 'etudes')}>Add/Rmv</button>                           
+                                <p style={{fontSize:'22px'}}>{props.scales.map(scale => `${scale} - `)}</p>
                             </div>
+
+                            <div style={{padding:'0px 0px 50px 0px', borderColor:'white', borderWidth:'1px', borderStyle:'solid'}}>
+                                <div>
+                                    <h4 style={{float:'left'}}>Etudes</h4>
+                                    <div style={{alignSelf:'center', marginBottom:'10px', float:'left'}}>
+                                        <input name='composer' placeholder='Composer' style={{width:'220px'}}/>
+                                        <input name='book' placeholder='Book' style={{width:'220px'}}/>    
+                                        <input name='number' type='Number' placeholder='#' style={{width:'70px'}}/>     
+                                    </div>
+                                    <button className='btn btn-sm btn-outline-light' style={{float:'right', marginBottom:'10px'}} type='button' onClick={(e) => addRmvPieceExcEt(e, 'input', 'etudes')}>Add/Rmv</button>
+                                </div>
+                                <div style={{marginBottom:'10px'}}>
+                                    <select style={{width:'400px'}}>
+                                        {props.etudes.map(etude => <option>{`${etude.composer}, ${etude.book} #${etude.number}`}</option>)}
+                                    </select>
+                                    <button className='btn btn-sm btn-outline-light' type='button' onClick={(e) => addRmvPieceExcEt(e, 'dropdown', 'etudes')}>Add/Rmv</button>
+                                </div>
+                                <span >{props.etudes[0] ? props.etudes.map(etude => <p >{`${etude.composer}, ${etude.book} #${etude.number}`}</p>) : ' '}</span>
+                            </div>
+
                             <div style={{borderColor:'white', borderWidth:'1px', borderStyle:'solid'}}>
                                 <h4 style={{float:'left'}}>Pieces</h4>
                                 <span >{props.pieces[0] ? props.pieces.map(piece => <p >{`${piece.composer} - ${piece.title}`}</p>) : ' '}</span>

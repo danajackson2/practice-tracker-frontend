@@ -6,7 +6,6 @@ function SessionContainer(){
     return(
         <div className="container">
             <div className='row'>
-                <h1>Session Container</h1>
                 <Toolbox />
                 <NewSession />
             </div>

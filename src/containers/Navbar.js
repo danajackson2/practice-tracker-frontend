@@ -15,7 +15,7 @@ const Navbar = (props) => {
 
     const {username, instrument} = props.state.current_user
     return(
-        <div>
+        <div style={{marginBottom:'40px'}}>
             <NavLink id='top-name' to='/'><h1 >PracTrac</h1></NavLink>
             <h4 style={{textAlign:'center', color:'white'}}>{username ? `Hi, ${username }, time to practice your ${instrument}!` : ''}</h4>
             <nav className="navbar navbar-custom navbar-expand-lg navbar-dark">
@@ -26,12 +26,12 @@ const Navbar = (props) => {
                     <div className="collapse navbar-collapse" id="navbarSupportedContent">
                         {Object.keys(props.state.current_user).length > 0
                         ? <>
-                            <ul className="navbar-nav me-auto mb-2 mb-lg-0">
-                                <li className='btn nav-item'><NavLink to='/new-session'>New Session</NavLink></li>
-                                <li className='btn nav-item'><NavLink to='/past-sessions'>Past Sessions</NavLink></li>
-                            </ul >
+                            <div className="navbar-nav me-auto mb-2 mb-lg-0">
+                                <NavLink to='/new-session' className='btn' style={{textDecoration:'none', color:'white'}}>New Session</NavLink>
+                                <NavLink to='/past-sessions' className='btn' style={{textDecoration:'none', color:'white'}}>Past Sessions</NavLink>
+                            </div >
                             <ul className="navbar-nav ms-auto mb-2 mb-lg-0">
-                                <li className="nav-item btn ms-auto"><button className='btn' onClick={logout}>Log Out</button></li>
+                                <li className="nav-item ms-auto btn" style={{color:'white'}} onClick={logout}>Log Out</li>
                             </ul>
                         </>
                         :
