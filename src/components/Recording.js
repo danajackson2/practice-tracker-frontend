@@ -1,6 +1,4 @@
 import React from 'react'
-import {handleRecording} from '../redux/actions/actions' 
-import {connect} from 'react-redux'
 // npm install mic-recorder-to-mp3
 const MicRecorder = require('mic-recorder-to-mp3')
 const recorder = new MicRecorder({bitRate: 128})
@@ -22,7 +20,6 @@ class Recording extends React.Component {
     stopRecording = () => {
         recorder.stop()
         .getMp3()
-        // .then(mp3 => this.props.handleRecording(mp3))
         .then(([buffer, blob]) => {
             const file = new File(buffer, 'recording.mp3', {
                 type: blob.type,
@@ -46,20 +43,17 @@ class Recording extends React.Component {
     }
 
     saveRecording = () => {
-        
-        if (!!this.state.recording){
-            // this.props.handleRecording(this.state.recording)
+        if (!!this.state.recording && !formData.recording){
             return fetch('http://localhost:3000/recordings',{
                 method: 'POST',
-                headers: {
-                      Authorization: `Bearer ${localStorage.token}`},
+                headers: {Authorization: `Bearer ${localStorage.token}`},
                 body: formData
             })
             .then(res => res.json())
-            // .then(data => console.log(data.url))
             .then(data => {
                 const player1 = new Audio(data.url)
                 player1.play()
+                formData = new FormData()
             })
         }
     }
@@ -86,4 +80,4 @@ class Recording extends React.Component {
 }
 
 
-export default connect(null, {handleRecording})(Recording)
+export default Recording

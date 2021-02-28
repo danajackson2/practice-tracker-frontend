@@ -71,10 +71,6 @@ const someReducer = (state=initialState, action) => {
             return {
                 ...state, session: {...state.session, notes: action.text}
             }
-        case 'HANDLE_RECORDING' :
-            return {
-                ...state, session: {...state.session, recordings: [...state.session.recordings, action.recording]}
-            }
         case 'HANDLE_RATING' :
             return {
                 ...state, session: {...state.session, [action.kind]: action.rating}
