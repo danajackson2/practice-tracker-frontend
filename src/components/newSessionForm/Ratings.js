@@ -5,11 +5,11 @@ import {handleRating} from '../../redux/actions/actions'
 function Ratings(props){
     return (
         <>
-            <div className='col' style={{borderColor:'white', borderWidth:'1px', borderStyle:'solid'}}>
+            <div className='col'>
                 <h4>Productivity : {props.prod_rating}/10</h4>
                 <input type="range" min="1" max="10" defaultValue='5' className="slider" onChange={e => props.handleRating(e.target.value, 'prod_rating')}/>
             </div>
-            <div className='col' style={{borderColor:'white', borderWidth:'1px', borderStyle:'solid'}}>
+            <div className='col'>
                 <h4>Focus : {props.focus_rating}/10</h4>
                 <input type="range" min="1" max="10" defaultValue='5' className="slider" onChange={e => props.handleRating(e.target.value, 'focus_rating')}/>
             </div>

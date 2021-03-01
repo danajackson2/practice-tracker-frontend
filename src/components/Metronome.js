@@ -84,7 +84,7 @@ export default class Metronome extends Component {
                         <input type='submit' value='Set'/>
                     </form>
                 </div>
-                <button onClick={this.startStop}>
+                <button type='button' className='btn btn-outline-light' onClick={this.startStop}>
                     {playing ? 'Stop' : 'Play'}
                 </button>
                 

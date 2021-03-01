@@ -11,7 +11,6 @@ import Ratings from '../components/newSessionForm/Ratings'
 import {handleItems} from '../redux/actions/actions'
 import {connect} from 'react-redux'
 
-const notes =["A", "B♭", "B", "C", "C♯", "D", "E♭", "E", "F", "F♯", "G", "A♭"] 
 const BASE_URL = 'http://localhost:3000'
 
 function NewSession(props){
@@ -76,14 +75,14 @@ function NewSession(props){
                             <Excerpts addRmvPieceExcEt={addRmvPieceExcEt}/>
                         </div>
                     </div>
-                    <div className='row' style={{height:'300px'}}>
+                    <div className='row' style={{height:'300px', marginTop:'20px'}}>
                         <Notes />
                         <Recording />
                     </div>
-                    <div className='row'>
+                    <div className='row' style={{marginTop:'30px'}}>
                         <Ratings />
                     </div>
-                    <button type='submit' className='btn btn-outline-light'>Save Session</button>
+                    <button type='submit' className='btn btn-outline-light' style={{width:'200px', margin:'50px 0px 30px 0px'}}>Save Session</button>
                 </form>
             </div>
         </div>

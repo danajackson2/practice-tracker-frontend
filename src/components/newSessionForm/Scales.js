@@ -12,19 +12,23 @@ function Scales(props){
     }
 
     return (
-        <div style={{padding:'0px 0px 30px 0px'}}>
-            <h4 style={{float:'left'}}>Scales</h4>
-            <div style={{padding:'5px 5px 20px 5px'}}>
-                <select>
-                    {notes.map(note => <option value={`${note}`}>{`${note}`}</option>)}
-                </select>
-                <select>
-                    <option value='maj'>maj</option>
-                    <option value='min'>min</option>
-                </select>
-                <button type='button' className='btn btn-sm btn-outline-light' onClick={addRmvScale}>Add/Rmv</button>
-            </div>
-            <p style={{fontSize:'22px'}}>{props.scales.map(scale => `${scale} - `)}</p>
+        <div style={{display: 'flex', flexDirection: 'row', marginBottom:'30px', justifyContent:'space-between'}}>
+                <div>
+                    <h4>Scales</h4>
+                </div>
+                <div>
+                    <p style={{fontSize:'22px'}}>{props.scales.map(scale => `${scale} - `)}</p>
+                </div>
+                <div style={{padding:'5px 5px 20px 5px'}}>
+                    <select style={{marginLeft:'10px'}}>
+                        {notes.map(note => <option value={`${note}`}>{`${note}`}</option>)}
+                    </select>
+                    <select style={{marginLeft:'10px'}}>
+                        <option value='maj'>maj</option>
+                        <option value='min'>min</option>
+                    </select>
+                    <button style={{marginLeft:'10px'}} type='button' className='btn btn-sm btn-outline-light' onClick={addRmvScale}>Add/Rmv</button>
+                </div>
         </div>
     )
 }

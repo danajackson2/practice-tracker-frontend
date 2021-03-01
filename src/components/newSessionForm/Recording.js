@@ -43,24 +43,24 @@ class Recording extends React.Component {
 
     render(){
         return(
-            <div className='col' style={{borderColor:'white', borderWidth:'1px', borderStyle:'solid'}}>
-                <h4 style={{float:'left'}}>Recording</h4>
-                <div>
-                <input id='rec-title' placeholder='Recording name' onChange={e => this.handleRecName(e)}/>
-
+            <div className='col' style={{display:'flex', flexDirection:'column'}}>
+                <h4 style={{alignSelf:'flex-start'}}>Recording</h4>
+                <div style={{display:'flex', alignItems:'center', justifyContent:'space-between'}}>
+                    <input id='rec-title' placeholder='Recording name' onChange={e => this.handleRecName(e)}/>
+                    <div>
+                        <button className='btn btn-outline-light' type='button' style={{padding:'5px', width:'50px'}} onClick={this.startRecording}>Start</button>
+                        <button className='btn btn-outline-light' type='button' style={{padding:'5px', width:'50px', marginLeft:'10px'}} onClick={this.stopRecording}>Stop</button>
+                    </div>
                     {this.state.blinking
-                    ? <svg height="70" width="70" className="blinking">
-                        <circle cx="50" cy="50" r="10" fill="#DA7B93" />
-                    </svg>   
-                    : <svg height="70" width="70">
-                        <circle cx="50" cy="50" r="10" fill="#DA7B93" />
-                    </svg>   
+                    ? <img src={'/circle.png'} style={{height:'30px'}} className='blinking'/>    
+                    : <img src={'/circle.png'} style={{height:'30px'}} />   
                     }   
-                    <button className='btn btn-outline-light' type='button' style={{padding:'5px', width:'50px', float:'right'}} onClick={this.startRecording}>Start</button>
-                    <button className='btn btn-outline-light' type='button' style={{padding:'5px', width:'50px', marginRight:'5px', float:'right'}} onClick={this.stopRecording}>Stop</button>
-                    {this.state.rec_data.map(data => <Player data={data}/>)}
-                </div>
+                    </div>
+                    <div style={{display:'flex', flexDirection:'column', marginTop:'10px'}}>
+                        {this.state.rec_data.map(data => <Player data={data}/>)}
+                    </div>
             </div>
+            
         )
     }
 }

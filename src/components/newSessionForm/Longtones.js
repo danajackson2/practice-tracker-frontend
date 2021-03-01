@@ -5,14 +5,20 @@ const notes =["A", "B♭", "B", "C", "C♯", "D", "E♭", "E", "F", "F♯", "G",
 
 function Longtones(props){
     return (
-        <div style={{padding:'0px 0px 50px 0px'}}>
-            <h4 style={{float:'left'}}>Longtones</h4>
-            {notes.map(note => {
-                return <>
-                    <label htmlFor={`${note}`} style={{fontSize:'22px'}}>{`${note}`}</label>
-                    <input onChange={props.handleLongtones} type='checkbox' name={`${note}`} style={{marginRight:'15px'}}/>
-                </>
-            })}
+        <div style={{padding:'0px 0px 30px 0px', display:'flex', justifyContent:'space-between'}}>
+            <div>
+                <h4 >Longtones</h4>
+            </div>
+            <div style={{display:'flex', alignItems: 'baseline'}}>
+                <div >
+                    {notes.map(note => {
+                        return <>
+                            <label htmlFor={`${note}`} style={{fontSize:'22px'}}>{`${note}`}</label>
+                            <input onChange={props.handleLongtones} type='checkbox' name={`${note}`} style={{marginRight:'15px'}}/>
+                        </>
+                    })}
+                </div>
+            </div>
         </div>
     )
 }
