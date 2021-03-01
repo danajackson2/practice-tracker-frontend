@@ -37,17 +37,18 @@ export const handleNotes = (text) => {
     }
 }
 
-export const handleRecording = (recording) => {
-    return {
-        type: 'HANDLE_RECORDING',
-        recording: recording
-    }
-}
-
 export const handleRating = (rating, kind) => {
     return {
         type: 'HANDLE_RATING',
         rating: rating,
         kind: kind
+    }
+}
+
+export const handlePrevPracData = (data) => {
+    debugger
+    return {
+        type: 'PREV_PRAC_DATA',
+        data: data
     }
 }

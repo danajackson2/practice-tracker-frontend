@@ -30,9 +30,9 @@ class Timer extends React.Component{
         let seconds = ('0' + (this.state.seconds % 60)).slice(-2)
         return(
             <div>
+                <h3 id='timer-count'>{`${hours}:${minutes}:${seconds}`}</h3>
                 <button type='button' className='btn btn-outline-light' id='timer-button' onClick={this.startTimer}>Start</button>
                 <button type='button' className='btn btn-outline-light' id='timer-button' onClick={this.stopTimer}>Stop</button>
-                <h3 id='timer-count'>{`${hours}:${minutes}:${seconds}`}</h3>
             </div>
         )
     }

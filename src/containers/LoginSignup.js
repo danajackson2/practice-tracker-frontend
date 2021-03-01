@@ -1,6 +1,6 @@
 import React from 'react'
 import {connect} from 'react-redux'
-import {formOnChange, setCurrentUser} from '../redux/actions/actions'
+import {formOnChange, setCurrentUser, handlePrevPracData} from '../redux/actions/actions'
 
 function LoginSignup(props){
 
@@ -25,7 +25,10 @@ function LoginSignup(props){
             body: JSON.stringify(props.state.login)
         })
         .then(res => res.json())
-        .then(data => handleAuthResponse(data))
+        .then(data => {
+            handleAuthResponse(data)//does this line need a return?
+            getPrevPracData(data.user_id)
+        })
     }
 
     const signup = (e) => {
@@ -37,6 +40,19 @@ function LoginSignup(props){
         })
         .then(res => res.json())
         .then(data => handleAuthResponse(data))
+    }
+
+    const getPrevPracData = user_id => {
+        fetch(`${BASE_URL}/prac-data`,{
+            method:'POST',
+            headers: {
+                'content-type':'application/json', 
+                Authorization: `Bearer ${localStorage.token}`
+            },
+            body: JSON.stringify({user_id: user_id})
+        })
+        .then(res => res.json())
+        .then(data => props.handlePrevPracData(data))
     }
 
     return (
@@ -76,4 +92,4 @@ const mapStateToProps = state => {
     }
 }
 
-export default connect(mapStateToProps, {formOnChange, setCurrentUser})(LoginSignup)
+export default connect(mapStateToProps, {formOnChange, setCurrentUser, handlePrevPracData})(LoginSignup)
