@@ -43,20 +43,23 @@ class Recording extends React.Component {
 
     render(){
         return(
-            <div>
-                {this.state.blinking
-                ? <svg height="70" width="70" className="blinking">
-                    <circle cx="50" cy="50" r="10" fill="#DA7B93" />
-                </svg>   
-                : <svg height="70" width="70">
-                    <circle cx="50" cy="50" r="10" fill="#DA7B93" />
-                </svg>   
-                }   
+            <div className='col' style={{borderColor:'white', borderWidth:'1px', borderStyle:'solid'}}>
                 <h4 style={{float:'left'}}>Recording</h4>
+                <div>
                 <input id='rec-title' placeholder='Recording name' onChange={e => this.handleRecName(e)}/>
-                <button className='btn btn-outline-light' type='button' onClick={this.startRecording}>Start</button>
-                <button className='btn btn-outline-light' type='button' onClick={this.stopRecording}>Stop</button>
-                {this.state.rec_data.map(data => <Player data={data}/>)}
+
+                    {this.state.blinking
+                    ? <svg height="70" width="70" className="blinking">
+                        <circle cx="50" cy="50" r="10" fill="#DA7B93" />
+                    </svg>   
+                    : <svg height="70" width="70">
+                        <circle cx="50" cy="50" r="10" fill="#DA7B93" />
+                    </svg>   
+                    }   
+                    <button className='btn btn-outline-light' type='button' style={{padding:'5px', width:'50px', float:'right'}} onClick={this.startRecording}>Start</button>
+                    <button className='btn btn-outline-light' type='button' style={{padding:'5px', width:'50px', marginRight:'5px', float:'right'}} onClick={this.stopRecording}>Stop</button>
+                    {this.state.rec_data.map(data => <Player data={data}/>)}
+                </div>
             </div>
         )
     }

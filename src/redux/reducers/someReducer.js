@@ -18,7 +18,11 @@ const initialState = {
         notes: '',
         prod_rating: 0,
         focus_rating: 0,
-        recordings: []
+    },
+    prevPracData : {
+        etudes: [],
+        pieces: [],
+        excerpts: []
     }
 }
 
@@ -74,6 +78,11 @@ const someReducer = (state=initialState, action) => {
         case 'HANDLE_RATING' :
             return {
                 ...state, session: {...state.session, [action.kind]: action.rating}
+            }
+        case 'PREV_PRAC_DATA' :
+            debugger
+            return {
+                ...state, prevPracData: action.data
             }
         default :
             return state

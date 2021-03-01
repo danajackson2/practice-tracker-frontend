@@ -44,3 +44,11 @@ export const handleRating = (rating, kind) => {
         kind: kind
     }
 }
+
+export const handlePrevPracData = (data) => {
+    debugger
+    return {
+        type: 'PREV_PRAC_DATA',
+        data: data
+    }
+}
