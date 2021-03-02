@@ -46,9 +46,16 @@ export const handleRating = (rating, kind) => {
 }
 
 export const handlePrevPracData = (data) => {
-    debugger
     return {
         type: 'PREV_PRAC_DATA',
         data: data
     }
 }
+
+// export const handleUserSessions = (userSessions) => {
+//     return {
+//         type: 'HANDLE_USER_SESSIONS',
+//         userSessions: userSessions
+//     }
+
+// }

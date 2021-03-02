@@ -80,10 +80,13 @@ const someReducer = (state=initialState, action) => {
                 ...state, session: {...state.session, [action.kind]: action.rating}
             }
         case 'PREV_PRAC_DATA' :
-            debugger
             return {
                 ...state, prevPracData: action.data
             }
+        // case 'HANDLE_USER_SESSIONS' :
+        //     return {
+        //         ...state, current_user: {...state.current_user, userSessions: action.userSessions}
+        //     }
         default :
             return state
     }

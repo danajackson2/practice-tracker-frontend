@@ -52,8 +52,8 @@ class Recording extends React.Component {
                         <button className='btn btn-outline-light' type='button' style={{padding:'5px', width:'50px', marginLeft:'10px'}} onClick={this.stopRecording}>Stop</button>
                     </div>
                     {this.state.blinking
-                    ? <img src={'/circle.png'} style={{height:'30px'}} className='blinking'/>    
-                    : <img src={'/circle.png'} style={{height:'30px'}} />   
+                    ? <img src={'/circle.png'} style={{height:'30px'}} className='blinking' alt={'blinking circle'}/>    
+                    : <img src={'/circle.png'} style={{height:'30px'}} alt={'circle'}/>   
                     }   
                     </div>
                     <div style={{display:'flex', flexDirection:'column', marginTop:'10px'}}>

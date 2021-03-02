@@ -8,9 +8,9 @@ function LoginSignup(props){
 
     const handleAuthResponse = (data) => {
         if (data.username) {
-            const { username, user_id, instrument, token } = data
+            const { username, user_id, instrument, userSessions, token } = data
             localStorage.setItem('token', token)
-            props.setCurrentUser({username, instrument, user_id})
+            props.setCurrentUser({username, instrument, user_id, userSessions})
             props.historyRouterProp.push('/new-session')
         } else {
             alert(data.error)
@@ -22,7 +22,7 @@ function LoginSignup(props){
         fetch(`${BASE_URL}/login`,{
             method: 'POST',
             headers: {'content-type':'application/json'},
-            body: JSON.stringify(props.state.login)
+            body: JSON.stringify(props.login)
         })
         .then(res => res.json())
         .then(data => {
@@ -54,6 +54,14 @@ function LoginSignup(props){
         .then(res => res.json())
         .then(data => props.handlePrevPracData(data))
     }
+
+    // const getUserSessions = user_id => {
+    //     fetch(`http://localhost:3000/sessions/${user_id}`,{  
+    //         headers: {Authorization: `Bearer ${localStorage.token}`}
+    //     })
+    //     .then(res => res.json())
+    //     .then(data => props.handleUserSessions(data))
+    // }
 
     return (
         <ul className="navbar-nav ms-auto mb-2 mb-lg-0 ">
@@ -88,7 +96,8 @@ function LoginSignup(props){
 
 const mapStateToProps = state => {
     return {
-        state: state
+        state: state,
+        login: state.login
     }
 }
 

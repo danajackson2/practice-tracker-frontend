@@ -28,7 +28,7 @@ const Navbar = (props) => {
                         ? <>
                             <div className="navbar-nav me-auto mb-2 mb-lg-0">
                                 <NavLink to='/new-session' className='btn' style={{textDecoration:'none', color:'white'}}>New Session</NavLink>
-                                <NavLink to='/past-sessions' className='btn' style={{textDecoration:'none', color:'white'}}>Past Sessions</NavLink>
+                                <NavLink to='/sessions' className='btn' style={{textDecoration:'none', color:'white'}}>Past Sessions</NavLink>
                             </div >
                             <ul className="navbar-nav ms-auto mb-2 mb-lg-0">
                                 <li className="nav-item ms-auto btn" style={{color:'white'}} onClick={logout}>Log Out</li>
