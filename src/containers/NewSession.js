@@ -52,8 +52,9 @@ function NewSession(props){
         .then(data => alert(data.message))
         props.clearSessionForm()
         document.querySelectorAll('.lt-checkbox').forEach(box => box.checked = false)
-        document.querySelector('#notes-text-area').textContent = ''
-        document.querySelector('#players').value = ''
+        document.querySelector('#notes-text-area').value = ''
+        document.querySelector('#players').innerHTML = ''
+        document.getElementById('timer-count').textContent = '00:00:00'
     }
 
     return(

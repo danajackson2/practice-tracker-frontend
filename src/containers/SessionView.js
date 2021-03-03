@@ -24,7 +24,7 @@ function SessionView(props){
     const formatDate = (date) =>{
         let day = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'][new Date(date).getDay()]
         let month = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'][new Date(date).getMonth()]
-        let dayNum = date.split('-')[2].replace('0', '')
+        let dayNum = date?.split('-')[2]?.replace('0', '')
         return `${day} ${month} ${dayNum}, ${date.split('-')[0]}`
     }
 

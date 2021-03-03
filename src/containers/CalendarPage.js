@@ -7,9 +7,17 @@ import 'react-big-calendar/lib/css/react-big-calendar.css'
 
 function CalendarPage(props){
     const localizer = momentLocalizer(moment)
-    // const dates = [...new Set(props.userSessions.map(s => s.date))]
 
-    const sessions = props.userSessions.map(sesh => {return {title:'session', start: sesh.date, end:sesh.date, allDay: false, resource: sesh.id}})
+    // calendar puts events one day too early! this is to correct.
+    const addDay = (date) => {
+        const correctDayNum = parseInt(date.split('-')[2]) + 1
+        const correctDay = ('0' + correctDayNum).slice(-2)
+        return `${date.split('-')[0]}-${date.split('-')[1]}-${correctDay}`
+    }
+
+    const sessions = props.userSessions.map(sesh => {
+        return {title:'view session', start: addDay(sesh.date), end: addDay(sesh.date), allDay: false, resource: sesh.id}
+    })
 
     return(
         <div style={{display:'flex', alignItems:'center', flexDirection:'column'}}>
@@ -21,6 +29,8 @@ function CalendarPage(props){
                 endAccessor="end"
                 style={{ height: '750px', width:'900px' }}
                 onSelectEvent={(e) => props.historyRouterProp.push(`/sessions/${e.resource}`)}
+                popup={true}
+                views={['month']}
             />
             </div>
         </div>
