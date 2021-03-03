@@ -6,7 +6,7 @@ function Notes(props){
     return (
         <div className='col' >
             <h4 style={{float:'left'}}>Notes</h4>
-            <textarea style={{width:'100%', height:'80%', fontSize:'14px'}} onChange={e => props.handleNotes(e.target.value)}/>
+            <textarea id='notes-text-area' style={{width:'100%', height:'80%', fontSize:'14px'}} onChange={e => props.handleNotes(e.target.value)}/>
         </div>
     )
 }

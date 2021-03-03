@@ -1,6 +1,6 @@
 import React from 'react'
 import {connect} from 'react-redux'
-import {formOnChange, setCurrentUser, handlePrevPracData} from '../redux/actions/actions'
+import {formOnChange, setCurrentUser} from '../redux/actions/actions'
 
 function LoginSignup(props){
 
@@ -26,8 +26,8 @@ function LoginSignup(props){
         })
         .then(res => res.json())
         .then(data => {
-            handleAuthResponse(data)//does this line need a return?
-            getPrevPracData(data.user_id)
+            console.log(data)
+            handleAuthResponse(data)
         })
     }
 
@@ -42,25 +42,17 @@ function LoginSignup(props){
         .then(data => handleAuthResponse(data))
     }
 
-    const getPrevPracData = user_id => {
-        fetch(`${BASE_URL}/prac-data`,{
-            method:'POST',
-            headers: {
-                'content-type':'application/json', 
-                Authorization: `Bearer ${localStorage.token}`
-            },
-            body: JSON.stringify({user_id: user_id})
-        })
-        .then(res => res.json())
-        .then(data => props.handlePrevPracData(data))
-    }
-
-    // const getUserSessions = user_id => {
-    //     fetch(`http://localhost:3000/sessions/${user_id}`,{  
-    //         headers: {Authorization: `Bearer ${localStorage.token}`}
+    // const getPrevPracData = user_id => {
+    //     fetch(`${BASE_URL}/prac-data`,{
+    //         method:'POST',
+    //         headers: {
+    //             'content-type':'application/json', 
+    //             Authorization: `Bearer ${localStorage.token}`
+    //         },
+    //         body: JSON.stringify({user_id: user_id})
     //     })
     //     .then(res => res.json())
-    //     .then(data => props.handleUserSessions(data))
+    //     .then(data => props.handlePrevPracData(data))
     // }
 
     return (
@@ -101,4 +93,4 @@ const mapStateToProps = state => {
     }
 }
 
-export default connect(mapStateToProps, {formOnChange, setCurrentUser, handlePrevPracData})(LoginSignup)
+export default connect(mapStateToProps, {formOnChange, setCurrentUser})(LoginSignup)

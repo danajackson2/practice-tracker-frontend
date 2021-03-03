@@ -13,8 +13,8 @@ function Longtones(props){
                 <div >
                     {notes.map(note => {
                         return <>
-                            <label htmlFor={`${note}`} style={{fontSize:'22px'}}>{`${note}`}</label>
-                            <input onChange={props.handleLongtones} type='checkbox' name={`${note}`} style={{marginRight:'15px'}}/>
+                            <label htmlFor={`${note}`} style={{fontSize:'22px'}} >{`${note}`}</label>
+                            <input className='lt-checkbox' onChange={props.handleLongtones} type='checkbox' name={`${note}`} style={{marginRight:'15px'}}/>
                         </>
                     })}
                 </div>

@@ -2,8 +2,11 @@ import React from 'react'
 import {connect} from 'react-redux'
 
 function Etudes(props){
+    const prevEtudes = []
+    props.prevSessions.forEach(sesh => sesh.etudes.forEach(etude => prevEtudes.push(etude)))
+
     return (
-        <div style={{display: 'flex', flexDirection: 'column', marginBottom:'30px'}}>
+        <div style={{display: 'flex', flexDirection: 'column', marginBottom:'30px', minHeight:'150px'}}>
             <div style={{display:'flex', flexDirection: 'row', justifyContent:'space-between'}}>
                 <h4>Etudes</h4>
                 <div style={{display:'flex', flexDirection: 'column', justifyContent:'flex-end'}}>
@@ -15,7 +18,7 @@ function Etudes(props){
                     </div>
                     <div style={{alignSelf:'flex-end'}}>
                         <select style={{width:'350px'}}>
-                            {props.prevEtudes.map(etude => <option>{`${etude.composer}, ${etude.book} #${etude.number}`}</option>)}
+                            {prevEtudes.map(etude => <option>{`${etude.composer}, ${etude.book} #${etude.number}`}</option>)}
                         </select>
                         <button className='btn btn-sm btn-outline-light' type='button' style={{marginLeft:'10px'}} onClick={(e) => props.addRmvPieceExcEt(e, 'dropdown', 'etudes')}>Add/Rmv</button>
                     </div>
@@ -30,8 +33,8 @@ function Etudes(props){
 
 const mapStateToProps = state => {
     return {
-        prevEtudes: state.prevPracData.etudes,
-        etudes: state.session.etudes,
+        prevSessions: state.current_user.userSessions,
+        etudes: state.session.etudes
     }
 }
 

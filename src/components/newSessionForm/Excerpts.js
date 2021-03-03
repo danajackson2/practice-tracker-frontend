@@ -2,8 +2,12 @@ import React from 'react'
 import {connect} from 'react-redux'
 
 function Excerpts(props){
+
+    const prevExcerpts = []
+    props.prevSessions.forEach(sesh => sesh.excerpts.forEach(excerpt => prevExcerpts.push(excerpt)))
+
     return (
-        <div style={{display: 'flex', flexDirection: 'column', marginBottom:'30px'}}>
+        <div style={{display: 'flex', flexDirection: 'column', marginBottom:'30px', minHeight:'150px'}}>
             <div style={{display:'flex', flexDirection: 'row', justifyContent:'space-between'}}>
                 <h4>Excerpts</h4>
                 <div style={{display:'flex', flexDirection: 'column', justifyContent:'flex-end'}}>
@@ -15,7 +19,7 @@ function Excerpts(props){
                     </div>
                     <div style={{alignSelf:'flex-end'}}>
                         <select style={{width:'350px'}}>
-                            {props.prevExcerpts.map(excerpt => <option>{`${excerpt.composer} - ${excerpt.work} - ${excerpt.place}`}</option>)}
+                            {prevExcerpts.map(excerpt => <option >{`${excerpt.composer} - ${excerpt.work} - ${excerpt.place}`}</option>)}
                         </select>
                         <button className='btn btn-outline-light btn-sm' type='button' style={{marginLeft:'10px'}} onClick={(e) => props.addRmvPieceExcEt(e, 'dropdown', 'excerpts')}>Add/Rmv</button> 
                     </div>         
@@ -30,7 +34,7 @@ function Excerpts(props){
 
 const mapStateToProps = state => {
     return {
-        prevExcerpts: state.prevPracData.excerpts,
+        prevSessions: state.current_user.userSessions,
         excerpts: state.session.excerpts,
     }
 }

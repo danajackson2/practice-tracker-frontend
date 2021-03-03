@@ -5,7 +5,7 @@ import {setCurrentUser} from './redux/actions/actions'
 import React from 'react'
 import Navbar from './containers/Navbar'
 import SessionContainer from './containers/SessionContainer'
-import Calendar from './containers/Calendar'
+import CalendarPage from './containers/CalendarPage'
 import SessionView from './containers/SessionView'
 import Welcome from './components/Welcome'
 
@@ -37,7 +37,7 @@ class App extends React.Component {
         {localStorage.token && 
           <>
             <Route exact path='/new-session' render={() => <SessionContainer />} />
-            <Route exact path='/sessions' render={() => <Calendar  persistUser={this.persistUser}/>} />
+            <Route exact path='/sessions' render={() => <CalendarPage  persistUser={this.persistUser}/>} />
             <Route path='/sessions/:id' render={routerProps => <SessionView persistUser={this.persistUser} routerProps={routerProps}/>}/>
           </>
         }

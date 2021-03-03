@@ -8,7 +8,26 @@ const initialState = {
         username: '',
         password: ''
     },
-    current_user: {},
+    current_user: {
+        username: '',
+        user_id: null,
+        instrument: '',
+        userSessions: [
+            {
+                id: null,
+                date: '',
+                duration: '',
+                focus_rating: null,
+                prod_rating:null,
+                notes: '',
+                etudes: [],
+                pieces: [],
+                excerpts: [],
+                longtones: [],
+                scales: []
+            }
+        ]
+    },
     session: {
         longtones: [],
         scales: [],
@@ -17,12 +36,7 @@ const initialState = {
         excerpts: [],
         notes: '',
         prod_rating: 0,
-        focus_rating: 0,
-    },
-    prevPracData : {
-        etudes: [],
-        pieces: [],
-        excerpts: []
+        focus_rating: 0
     }
 }
 
@@ -34,7 +48,7 @@ const someReducer = (state=initialState, action) => {
             }
         case 'SET_CURRENT_USER' :
             return {
-                ...state, current_user: action.user
+                ...state, current_user: {...state.current_user, ...action.user}
             }
         case 'HANDLE_LONGTONES' :
             if (action.checked) {
@@ -79,14 +93,19 @@ const someReducer = (state=initialState, action) => {
             return {
                 ...state, session: {...state.session, [action.kind]: action.rating}
             }
-        case 'PREV_PRAC_DATA' :
+        case 'CLEAR_SESSION_FORM' :
             return {
-                ...state, prevPracData: action.data
+                ...state, session: {
+                    longtones: [],
+                    scales: [],
+                    etudes: [],
+                    pieces: [],
+                    excerpts: [],
+                    notes: '',
+                    prod_rating: 0,
+                    focus_rating: 0
+                }
             }
-        // case 'HANDLE_USER_SESSIONS' :
-        //     return {
-        //         ...state, current_user: {...state.current_user, userSessions: action.userSessions}
-        //     }
         default :
             return state
     }

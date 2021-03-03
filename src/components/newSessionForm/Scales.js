@@ -17,7 +17,7 @@ function Scales(props){
                     <h4>Scales</h4>
                 </div>
                 <div>
-                    <p style={{fontSize:'22px'}}>{props.scales.map(scale => `${scale} - `)}</p>
+                    <p style={{fontSize:'22px'}}>{props.scales.map(scale => `${scale} - `).join('').slice(0, -3)}</p>
                 </div>
                 <div style={{padding:'5px 5px 20px 5px'}}>
                     <select style={{marginLeft:'10px'}}>

@@ -1,7 +1,7 @@
 import React from 'react'
 
 function Player(props){
-
+    
     const togglePlay = (e) => {
         e.preventDefault()
         const media = document.getElementById(`audio${props.data.id}`)
@@ -26,7 +26,7 @@ function Player(props){
         let seconds = ('0' + (Math.floor(timeSec) % 60)).slice(-2)
         document.getElementById(`time-left${props.data.id}`).textContent = `${minutes}:${seconds}`
     }
-
+    
     return (
         <div className="audio-player">
             <audio src={props.data.url} id={`audio${props.data.id}`} onEnded={endOfClip} onTimeUpdate={updateTime}/>

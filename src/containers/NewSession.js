@@ -8,7 +8,7 @@ import Pieces from '../components/newSessionForm/Pieces'
 import Excerpts from '../components/newSessionForm/Excerpts'
 import Notes from '../components/newSessionForm/Notes'
 import Ratings from '../components/newSessionForm/Ratings'
-import {handleItems} from '../redux/actions/actions'
+import {handleItems, clearSessionForm} from '../redux/actions/actions'
 import {connect} from 'react-redux'
 
 const BASE_URL = 'http://localhost:3000'
@@ -29,7 +29,7 @@ function NewSession(props){
             if (data !== ''){
                 let item
                 if (key === 'etudes'){
-                    item = {composer: data.split(', ')[0], book: data.split(' ')[1], number: data.split(' ')[2].slice(1)}
+                    item = {composer: data.split(', ')[0], book: data.split('#')[0].split(', ')[1], number: data.split('#')[1]}
                 } else if (key === 'pieces'){
                     item = {composer: data.split(' - ')[0], title: data.split(' - ')[1]}
                 } else if (key === 'excerpts'){
@@ -50,6 +50,10 @@ function NewSession(props){
         })
         .then(res => res.json())
         .then(data => alert(data.message))
+        props.clearSessionForm()
+        document.querySelectorAll('.lt-checkbox').forEach(box => box.checked = false)
+        document.querySelector('#notes-text-area').textContent = ''
+        document.querySelector('#players').value = ''
     }
 
     return(
@@ -92,8 +96,8 @@ function NewSession(props){
 const mapStateToProps = state => {
     return {
         session: state.session,
-        user_id: state.current_user.user_id,
+        user_id: state.current_user.user_id
     }
 }
 
-export default connect(mapStateToProps, {handleItems})(NewSession)
+export default connect(mapStateToProps, {handleItems, clearSessionForm})(NewSession)

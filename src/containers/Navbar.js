@@ -24,7 +24,7 @@ const Navbar = (props) => {
                         <span className="navbar-toggler-icon"></span>
                     </button>
                     <div className="collapse navbar-collapse" id="navbarSupportedContent">
-                        {Object.keys(props.state.current_user).length > 0
+                        {localStorage.token
                         ? <>
                             <div className="navbar-nav me-auto mb-2 mb-lg-0">
                                 <NavLink to='/new-session' className='btn' style={{textDecoration:'none', color:'white'}}>New Session</NavLink>

@@ -35,6 +35,7 @@ class Recording extends React.Component {
         })
         formData = new FormData()
         this.setState({blinking: false})
+        document.getElementById('rec-title').value = ''
     }
 
     handleRecName = e => {
@@ -56,7 +57,7 @@ class Recording extends React.Component {
                     : <img src={'/circle.png'} style={{height:'30px'}} alt={'circle'}/>   
                     }   
                     </div>
-                    <div style={{display:'flex', flexDirection:'column', marginTop:'10px'}}>
+                    <div id='players' style={{display:'flex', flexDirection:'column', marginTop:'10px'}}>
                         {this.state.rec_data.map(data => <Player data={data}/>)}
                     </div>
             </div>

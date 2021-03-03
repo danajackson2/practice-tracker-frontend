@@ -146,17 +146,6 @@
       margin: 10px;
   }
 
-  button {
-      background: #DA7B93;
-      padding: 10px;
-      border: 1px solid white;
-      border-radius: 2px;
-      width: 100px;
-      color: #fff;
-      font-size: 18px;
-      margin: 0 auto;
-  }
-
   .bpm-input {
       width: 25%;
       margin: 0 auto;

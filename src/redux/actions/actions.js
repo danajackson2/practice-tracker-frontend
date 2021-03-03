@@ -45,17 +45,8 @@ export const handleRating = (rating, kind) => {
     }
 }
 
-export const handlePrevPracData = (data) => {
+export const clearSessionForm = () => {
     return {
-        type: 'PREV_PRAC_DATA',
-        data: data
+        type: 'CLEAR_SESSION_FORM'
     }
 }
-
-// export const handleUserSessions = (userSessions) => {
-//     return {
-//         type: 'HANDLE_USER_SESSIONS',
-//         userSessions: userSessions
-//     }
-
-// }

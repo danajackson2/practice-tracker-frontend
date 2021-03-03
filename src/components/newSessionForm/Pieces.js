@@ -2,8 +2,12 @@ import React from 'react'
 import {connect} from 'react-redux'
 
 function Pieces(props){
+
+    const prevPieces = []
+    props.prevSessions.forEach(sesh => sesh.pieces.forEach(piece => prevPieces.push(piece)))
+
     return (
-        <div style={{display: 'flex', flexDirection: 'column', marginBottom:'30px'}}>
+        <div style={{display: 'flex', flexDirection: 'column', marginBottom:'30px', minHeight:'150px'}}>
             <div style={{display:'flex', flexDirection: 'row', justifyContent:'space-between'}}>
                 <h4 >Pieces</h4>
                 <div style={{display:'flex', flexDirection: 'column', justifyContent:'flex-end'}}>
@@ -15,7 +19,7 @@ function Pieces(props){
            
                 <div style={{alignSelf:'flex-end'}}>
                     <select style={{width:'350px'}}>
-                        {props.prevPieces.map(piece => <option>{`${piece.composer} - ${piece.title}`}</option>)}
+                        {prevPieces.map(piece => <option >{`${piece.composer} - ${piece.title}`}</option>)}
                     </select>
                     <button className='btn btn-outline-light btn-sm' style={{marginLeft:'10px'}} type='button' onClick={(e) => props.addRmvPieceExcEt(e, 'dropdown', 'pieces')}>Add/Rmv</button>
                 </div>
@@ -30,7 +34,7 @@ function Pieces(props){
 
 const mapStateToProps = state => {
     return {
-        prevPieces: state.prevPracData.pieces,
+        prevSessions: state.current_user.userSessions,
         pieces: state.session.pieces,
     }
 }
