@@ -55,12 +55,12 @@ function SessionView(props){
                 <h2 style={{width:'300px'}}>Excerpts</h2>
                 <ul style={{width:'100%', fontSize:'22px', listStyle:'none', paddingLeft:'0px'}}>{session.excerpts.map(e => <li>{`${e.composer}, ${e.work} - ${e.place}`}</li>)}</ul> 
             </div>
-            <div style={{display:'flex', flexDirection:'row', marginBottom:'40px'}}>
-                <div style={{display:'flex', flexDirection:'column', width:'100%', minHeight:'200px'}}>
+            <div style={{display:'flex', flexDirection:'row', marginBottom:'40px', minHeight:'200px'}}>
+                <div style={{display:'flex', flexDirection:'column', width:'100%', marginRight:'10px'}}>
                     <h2>Notes</h2>
                     <p>{session.notes}</p> 
                 </div>
-                <div style={{display:'flex', flexDirection:'column', width:'100%', minHeight:'200px'}}>
+                <div style={{display:'flex', flexDirection:'column', width:'100%', marginLeft:'10px'}}>
                     <h2>Recordings</h2>
                     <div>
                         {recordings?.map(rec => <Player key={rec.id} data={rec}/>)}

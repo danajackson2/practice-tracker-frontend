@@ -16,7 +16,10 @@ const Navbar = (props) => {
     const {username, instrument} = props.state.current_user
     return(
         <div style={{marginBottom:'40px'}}>
-            <NavLink id='top-name' to='/'><h1 >PracTrac</h1></NavLink>
+            {/* <NavLink id='top-name' to='/'><h1 >PracTrac</h1></NavLink> */}
+            <div style={{display:'flex', justifyContent:'center', margin:'20px 0px 10px 0px'}}>
+                <NavLink id='top-name' to='/'><img src='logo1.png' width='200px'/></NavLink>
+            </div>
             <h4 style={{textAlign:'center', color:'white'}}>{username ? `Hi, ${username }, time to practice your ${instrument}!` : ''}</h4>
             <nav className="navbar navbar-custom navbar-expand-lg navbar-dark">
                 <div className="container-fluid">
