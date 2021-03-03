@@ -42,19 +42,6 @@ function LoginSignup(props){
         .then(data => handleAuthResponse(data))
     }
 
-    // const getPrevPracData = user_id => {
-    //     fetch(`${BASE_URL}/prac-data`,{
-    //         method:'POST',
-    //         headers: {
-    //             'content-type':'application/json', 
-    //             Authorization: `Bearer ${localStorage.token}`
-    //         },
-    //         body: JSON.stringify({user_id: user_id})
-    //     })
-    //     .then(res => res.json())
-    //     .then(data => props.handlePrevPracData(data))
-    // }
-
     return (
         <ul className="navbar-nav ms-auto mb-2 mb-lg-0 ">
             <li className="nav-item dropdown">

@@ -1,26 +1,27 @@
 import React from 'react'
 import {connect} from 'react-redux'
-import { Link } from 'react-router-dom'
 
+import {Calendar, momentLocalizer} from 'react-big-calendar'
+import moment from 'moment'
+import 'react-big-calendar/lib/css/react-big-calendar.css'
 
 function CalendarPage(props){
+    const localizer = momentLocalizer(moment)
+    // const dates = [...new Set(props.userSessions.map(s => s.date))]
 
-    const dates = [...new Set(props.userSessions.map(s => s.date))]
+    const sessions = props.userSessions.map(sesh => {return {title:'session', start: sesh.date, end:sesh.date, allDay: false, resource: sesh.id}})
 
     return(
         <div style={{display:'flex', alignItems:'center', flexDirection:'column'}}>
-
-            <div>
-                {dates.map(date => {
-                    return <div>
-                        <h2>{date}</h2>
-                        {props.userSessions.filter(s => s.date === date).map(sesh => {
-                            return <div>
-                                {<Link to={`sessions/${sesh.id}`}><h4>{`${sesh.date}, ${sesh.duration}`}</h4></Link>}
-                            </div>
-                        })}
-                    </div>
-                })}
+            <div style={{height:'1000px'}}>
+            <Calendar
+                localizer={localizer}
+                events={sessions}
+                startAccessor="start"
+                endAccessor="end"
+                style={{ height: '750px', width:'900px' }}
+                onSelectEvent={(e) => props.historyRouterProp.push(`/sessions/${e.resource}`)}
+            />
             </div>
         </div>
     )

@@ -19,7 +19,7 @@ function SessionView(props){
             .then(data => setRecordings(data.recordings))
         }
         setDate(formatDate(session.date))
-    }, [session.id])
+    }, [session.date, session.id])
 
     const formatDate = (date) =>{
         let day = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'][new Date(date).getDay()]

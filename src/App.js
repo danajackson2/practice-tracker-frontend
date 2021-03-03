@@ -11,7 +11,7 @@ import Welcome from './components/Welcome'
 
 const BASE_URL = 'http://localhost:3000'
 class App extends React.Component {
-
+  
   persistUser = (token) => {
     fetch(`${BASE_URL}/persist`,{
       headers: {Authorization: `Bearer ${token}`}
@@ -29,7 +29,7 @@ class App extends React.Component {
       this.persistUser(token)
     }
   }
-
+  
   render(){
     return (
       <>    
@@ -37,8 +37,8 @@ class App extends React.Component {
         {localStorage.token && 
           <>
             <Route exact path='/new-session' render={() => <SessionContainer />} />
-            <Route exact path='/sessions' render={() => <CalendarPage  persistUser={this.persistUser}/>} />
-            <Route path='/sessions/:id' render={routerProps => <SessionView persistUser={this.persistUser} routerProps={routerProps}/>}/>
+            <Route exact path='/sessions' render={routerProps => <CalendarPage historyRouterProp={this.props.history}/>} />
+            <Route path='/sessions/:id' render={routerProps => <SessionView routerProps={routerProps}/>}/>
           </>
         }
         <Route exact path='/' component={Welcome} />
