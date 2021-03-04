@@ -106,6 +106,10 @@ const someReducer = (state=initialState, action) => {
                     focus_rating: 0
                 }
             }
+        case 'UPDATE_USER' :
+            return {
+                ...state, current_user: {...state.current_user, username: action.updates.username, instrument: action.updates.instrument}
+            }
         default :
             return state
     }

@@ -50,3 +50,10 @@ export const clearSessionForm = () => {
         type: 'CLEAR_SESSION_FORM'
     }
 }
+
+export const updateUser = (updates) => {
+    return {
+        type: 'UPDATE_USER',
+        updates: updates
+    }
+}

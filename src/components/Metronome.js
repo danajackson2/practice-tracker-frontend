@@ -75,12 +75,12 @@ export default class Metronome extends Component {
         const { playing, bpm } = this.state
         
         return (
-            <div className='metronome' style={{borderStyle: 'solid', borderWidth:'1px'}}>
+            <div className='metronome' style={{display:'flex', flexDirection:'column', borderStyle: 'solid', borderWidth:'1px', borderRadius:'10px', marginBottom:'20px'}}>
                 <div className='bpm-slider'>
-                    {bpm} BPM 
-                    <input type='range' min='60' max='240' value={bpm} onChange={this.handleBpmChange}/>
-                    <form className='bpm-input' >
-                        <input type='number' value={bpm} onChange={this.handleBpmChange} />
+                    <h5>{bpm} BPM </h5>
+                    <input type='range' min='40' max='208' value={bpm} onChange={this.handleBpmChange}/>
+                    <form className='bpm-input' style={{display:'flex', flexDirection:'row', justifyContent:'space-around'}}>
+                        <input style={{width:'100px'}} type='number' value={bpm} onChange={this.handleBpmChange} />
                         <input type='submit' value='Set'/>
                     </form>
                 </div>

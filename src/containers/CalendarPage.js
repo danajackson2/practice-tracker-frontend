@@ -15,12 +15,17 @@ function CalendarPage(props){
         return `${date.split('-')[0]}-${date.split('-')[1]}-${correctDay}`
     }
 
-    const sessions = props.userSessions.map(sesh => {
-        return {title:'view session', start: addDay(sesh.date), end: addDay(sesh.date), allDay: false, resource: sesh.id}
+    const sessions = props.userSessions.map((sesh) => {
+        return {
+            title:`Session ${sesh.id}`, 
+            start: addDay(sesh.date), 
+            end: addDay(sesh.date), 
+            allDay: false, 
+            resource: sesh.id}
     })
 
     return(
-        <div style={{display:'flex', alignItems:'center', flexDirection:'column'}}>
+        <div style={{display:'flex', alignItems:'center', flexDirection:'column', marginTop:'40px'}}>
             <div style={{height:'1000px'}}>
             <Calendar
                 localizer={localizer}

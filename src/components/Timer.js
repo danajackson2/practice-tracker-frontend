@@ -1,6 +1,6 @@
 import React from 'react'
 
-function Timer(){
+function Timer(props){
 
     let timer = null
 

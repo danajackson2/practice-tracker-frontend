@@ -58,7 +58,7 @@ function NewSession(props){
     }
 
     return(
-        <div id='new-session-div' className='col-9' style={{width:'850px'}}>
+        <div id='new-session-div' className='col-9' style={{width:'850px', marginTop:'40px'}}>
             <h1 style={{padding:'0px 0px 20px 0px'}}>Practice Session</h1>
             <div className='container'>
                 <form onSubmit={e => saveSession(e, props.user_id, document.getElementById('current-date').textContent, document.getElementById('timer-count').textContent)}>
