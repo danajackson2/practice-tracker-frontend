@@ -37,6 +37,12 @@ const initialState = {
         notes: '',
         prod_rating: 0,
         focus_rating: 0
+    },
+    currentNote: {
+        noteName: "",
+        cents: "",
+        freq: "",
+        octave: ""
     }
 }
 
@@ -110,6 +116,10 @@ const someReducer = (state=initialState, action) => {
             return {
                 ...state, current_user: {...state.current_user, username: action.updates.username, instrument: action.updates.instrument}
             }
+        case 'CHANGE_CURRENT_NOTE' :
+            return {
+                ...state, currentNote: action.currentNote
+            };
         default :
             return state
     }

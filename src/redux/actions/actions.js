@@ -57,3 +57,8 @@ export const updateUser = (updates) => {
         updates: updates
     }
 }
+
+export const changeCurrentNote = (note) => ({
+    type: 'CHANGE_CURRENT_NOTE',
+    currentNote: note
+  })
