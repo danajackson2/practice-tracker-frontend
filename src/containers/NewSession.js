@@ -24,12 +24,12 @@ function NewSession(props){
             } else {
                 alert('All fields must be filled in')
             }
-        } else {
+        } else if (type === 'dropdown'){
             let data = e.target.previousSibling.value
             if (data !== ''){
                 let item
                 if (key === 'etudes'){
-                    item = {composer: data.split(', ')[0], book: data.split('#')[0].split(', ')[1], number: data.split('#')[1]}
+                    item = {composer: data.split(', ')[0], book: data.split(' #')[0].split(', ')[1], number: data.split('#')[1]}
                 } else if (key === 'pieces'){
                     item = {composer: data.split(' - ')[0], title: data.split(' - ')[1]}
                 } else if (key === 'excerpts'){
@@ -42,19 +42,21 @@ function NewSession(props){
     }
 
     const saveSession = (e, user_id, date, duration) => {
-        e.preventDefault()
-        fetch(`${BASE_URL}/sessions`, {
-            method: 'POST',
-            headers: {'content-type':'application/json', Authorization: `Bearer ${localStorage.token}`},
-            body: JSON.stringify({session: {...props.session, date: date, duration: duration, user_id: user_id}})
-        })
-        .then(res => res.json())
-        .then(data => alert(data.message))
-        props.clearSessionForm()
-        document.querySelectorAll('.lt-checkbox').forEach(box => box.checked = false)
-        document.querySelector('#notes-text-area').value = ''
-        document.querySelector('#players').innerHTML = ''
-        document.getElementById('timer-count').textContent = '00:00:00'
+        if (e.keyCode !== 13) {
+            e.preventDefault()
+            fetch(`${BASE_URL}/sessions`, {
+                method: 'POST',
+                headers: {'content-type':'application/json', Authorization: `Bearer ${localStorage.token}`},
+                body: JSON.stringify({session: {...props.session, date: date, duration: duration, user_id: user_id}})
+            })
+            .then(res => res.json())
+            .then(data => alert(data.message))
+            props.clearSessionForm()
+            document.querySelectorAll('.lt-checkbox').forEach(box => box.checked = false)
+            document.querySelector('#notes-text-area').value = ''
+            document.querySelector('#players').innerHTML = ''
+            document.getElementById('timer-count').textContent = '00:00:00'
+        }
     }
 
     return(

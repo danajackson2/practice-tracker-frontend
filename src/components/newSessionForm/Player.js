@@ -48,8 +48,8 @@ function Player(props){
             <div style={{display:'flex', flexDirection:'row', justifyContent:'space-between', alignItems:'center', fontSize:'20px'}}>
                 <div style={{display:'flex', alignItems:'center'}}>
                     <button className='btn btn-outline-light' id={`playAudio${props.data.id}`} onClick={e => togglePlay(e)} style={{width:'40px', height:'40px', borderRadius:'20px', margin:'0px'}}>{'>'}</button>
-                    <span onClick={() => window.confirm('Are you sure you want to delete this recording?') && deleteRecording(props.data.id)} style={{fontSize:'30px', marginLeft:'10px', padding:'0'}} className='btn'>🗑</span>
-                </div>
+                    {props.deleteOption && <span onClick={() => window.confirm('Are you sure you want to delete this recording?') && deleteRecording(props.data.id)} style={{fontSize:'30px', marginLeft:'10px', padding:'0'}} className='btn'>🗑</span>}   
+                    </div>
                 <div>{props.data.name}</div>
                 <div id={`time-left${props.data.id}`}>{''}</div> 
             </div>

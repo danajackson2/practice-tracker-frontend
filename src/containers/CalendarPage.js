@@ -1,6 +1,5 @@
 import React from 'react'
 import {connect} from 'react-redux'
-
 import {Calendar, momentLocalizer} from 'react-big-calendar'
 import moment from 'moment'
 import 'react-big-calendar/lib/css/react-big-calendar.css'
@@ -15,7 +14,7 @@ function CalendarPage(props){
         return `${date.split('-')[0]}-${date.split('-')[1]}-${correctDay}`
     }
 
-    const sessions = props.userSessions.map((sesh) => {
+    const sessions = props.userSessions?.map((sesh) => {
         return {
             title:`Session ${sesh.id}`, 
             start: addDay(sesh.date), 

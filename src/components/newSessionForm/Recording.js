@@ -58,7 +58,7 @@ class Recording extends React.Component {
                     }   
                     </div>
                     <div id='players' style={{display:'flex', flexDirection:'column', marginTop:'10px'}}>
-                        {this.state.rec_data.map(data => <Player data={data}/>)}
+                        {this.state.rec_data.map(data => <Player data={data} deleteOption={true}/>)}
                     </div>
             </div>
             

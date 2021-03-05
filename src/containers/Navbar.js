@@ -16,6 +16,7 @@ const Navbar = (props) => {
     const editUser = (e, user) => {
         e.preventDefault()
         document.querySelector('ul.dropdown-menu').classList.remove('show')
+        document.querySelector('span.dropdown-toggle').classList.remove('show')
         let update = {id: user.user_id}
         Array.from(e.target.querySelectorAll('input')).forEach(input => update[input.name] = input.value === '' ? user[input.name] : input.value)
         fetch(`${BASE_URL}/users/${user.user_id}`, {
@@ -28,6 +29,16 @@ const Navbar = (props) => {
         })
         .then(res => res.json())
         .then(user => props.updateUser(user))
+    }
+
+    const deleteUser = () => {
+        if (window.confirm('Are you sure you want to delete this user?')) {
+            fetch(`${BASE_URL}/users/${props.current_user.user_id}`, {
+                method:'DELETE',
+                headers: {Authorization: `Bearer ${localStorage.token}`}
+            })
+        logout()
+        }
     }
 
     const {username, instrument} = props.current_user
@@ -61,8 +72,9 @@ const Navbar = (props) => {
                                         <form onSubmit={(e) => editUser(e, props.current_user)} style={{marginRight:'10px'}}>  
                                             <input className='menu-item' placeholder={`${props.current_user.username}`} name='username'></input>
                                             <input className='menu-item' placeholder={`${props.current_user.instrument}`} name='instrument'></input>
-                                            <button className='btn'>submit</button>
+                                            <button className='btn'>Submit</button>
                                         </form>
+                                        <button className='btn' onClick={deleteUser}>⚠️Delete User</button>
                                     </ul>
                                 </li>
                                 <li className="nav-item ms-auto btn" style={{color:'white', marginRight:'100px'}} onClick={logout}>Log Out</li>
@@ -77,6 +89,7 @@ const Navbar = (props) => {
         </div>
     )
 }
+
 
 const mapStateToProps = state => {
     return {

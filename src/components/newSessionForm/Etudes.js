@@ -1,9 +1,17 @@
 import React from 'react'
 import {connect} from 'react-redux'
+import {handleItems} from '../../redux/actions/actions'
 
 function Etudes(props){
-    const prevEtudes = []
-    props.prevSessions.forEach(sesh => sesh.etudes.forEach(etude => prevEtudes.push(etude)))
+
+    const etudesDropdown = []
+    const addToDropdown = etude => {
+        if (!etudesDropdown.includes(`${etude.composer}, ${etude.book} #${etude.number}`)) {
+            etudesDropdown.push(`${etude.composer}, ${etude.book} #${etude.number}`)
+        }
+    }
+    props.prevSessions?.forEach(sesh => sesh.etudes.forEach(etude => addToDropdown(etude)))
+    props.etudes?.forEach(etude => addToDropdown(etude))
 
     return (
         <div style={{display: 'flex', flexDirection: 'column', marginBottom:'30px', minHeight:'150px'}}>
@@ -18,14 +26,14 @@ function Etudes(props){
                     </div>
                     <div style={{alignSelf:'flex-end'}}>
                         <select style={{width:'350px'}}>
-                            {prevEtudes.map(etude => <option>{`${etude.composer}, ${etude.book} #${etude.number}`}</option>)}
+                            {etudesDropdown.map(etudeString => <option>{etudeString}</option>)}
                         </select>
                         <button className='btn btn-sm btn-outline-light' type='button' style={{marginLeft:'10px'}} onClick={(e) => props.addRmvPieceExcEt(e, 'dropdown', 'etudes')}>Add/Rmv</button>
                     </div>
                 </div>
             </div>
             <div style={{fontSize:'22px'}}>
-                {props.etudes[0] ? props.etudes.map(etude => <p style={{marginBottom:'3px'}}>{`${etude.composer}, ${etude.book} #${etude.number}`}</p>) : ''}
+                {props.etudes.map(etude => <p style={{marginBottom:'3px'}}>{`${etude.composer}, ${etude.book} #${etude.number}`}</p>)}
             </div>
         </div>
     )
@@ -38,4 +46,4 @@ const mapStateToProps = state => {
     }
 }
 
-export default connect(mapStateToProps)(Etudes)
+export default connect(mapStateToProps, {handleItems})(Etudes)

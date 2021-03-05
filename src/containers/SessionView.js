@@ -8,6 +8,7 @@ function SessionView(props){
     const [recordings, setRecordings] = useState([])
     const [date, setDate] = useState('')
 
+    // const session = props.sessions?.filter(s => s.id === parseInt(props.routerProps.match.params.id))[0]
     const session = props.sessions[0].id ? props.sessions.filter(s => s.id === parseInt(props.routerProps.match.params.id))[0] : props.sessions[0]
 
     useEffect(() => {
@@ -28,8 +29,21 @@ function SessionView(props){
         return `${day} ${month} ${dayNum}, ${date.split('-')[0]}`
     }
 
+    const deleteSession = () => {
+        if (window.confirm('Are you sure you want to delete this session?')){
+            fetch(`${BASE_URL}/sessions/${session.id}`, {
+                method:'DELETE',
+                headers: {Authorization: `Bearer ${localStorage.token}`}
+            })
+            .then(res => res.json())
+            .then(console.log)
+            props.routerProps.history.push('/sessions')
+        }
+
+    }
+
     return(
-        <div style={{borderStyle:'solid', borderWidth:'1px', color:'white', width:'800px', display:'flex', margin:'auto', flexDirection:'column', padding:'15px'}}>
+        <div style={{borderStyle:'solid', borderWidth:'1px', color:'white', width:'800px', display:'flex', margin:'auto', flexDirection:'column', padding:'15px', marginTop:'40px'}}>
             <h4 style={{alignSelf:'center', marginBottom:'20px'}}>{`Session ${session.id}`}</h4>
             <div style={{display:'flex', flexDirection:'row', justifyContent:'space-around'}}>
                 <h1>{date}</h1>
@@ -64,14 +78,15 @@ function SessionView(props){
                 <div style={{display:'flex', flexDirection:'column', width:'100%', marginLeft:'10px'}}>
                     <h2>Recordings</h2>
                     <div>
-                        {recordings?.map(rec => <Player key={rec.id} data={rec}/>)}
+                        {recordings?.map(rec => <Player key={rec.id} data={rec} deleteOption={false}/>)}
                     </div>
                 </div>
             </div>
             <div style={{display:'flex', flexDirection:'row', justifyContent:'space-around'}}>
-            <h2>Productivity: {session.prod_rating}/10</h2>
-            <h2>Focus: {session.focus_rating}/10</h2>
+                <h2>Productivity: {session.prod_rating}/10</h2>
+                <h2>Focus: {session.focus_rating}/10</h2>
             </div>
+            <button className={'btn btn-outline-light'} style={{marginTop:'40px', width:'30%', alignSelf:'center'}} onClick={deleteSession}>Delete Session</button>
         </div>
     )
 }
