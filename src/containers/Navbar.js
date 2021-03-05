@@ -92,22 +92,20 @@ const Navbar = (props) => {
                             <div className="navbar-nav me-auto mb-2 mb-lg-0">
                                 <NavLink to='/new-session' className='btn add-hover-effect' style={{marginLeft:'100px'}}>New Session</NavLink>
                                 <NavLink to='/sessions' className='btn add-hover-effect' style={{textDecoration:'none'}}>Past Sessions</NavLink>
-                                <ul className="navbar-nav ms-auto mb-2 mb-lg-0">
-                                    <li className="nav-item dropdown">
-                                        <span className="nav-link dropdown-toggle btn navbar-drop" data-bs-toggle="dropdown" aria-expanded="false">
-                                            Stats
-                                        </span>
-                                        <ul className="dropdown-menu navbar-drop" aria-labelledby="navbarDropdown" style={{padding:'10px', width:'400px'}}>
-                                            <li>Avg Focus: <span style={{fontWeight:'600'}}>{getAvgFocus()}/10</span></li>
-                                            <li>Avg Productivity: <span style={{fontWeight:'600'}}>{getAvgProd()}/10</span></li>
-                                            <li>Avg Session: <span style={{fontWeight:'600'}}>{getAvgSession()} min</span></li>
-                                            <li>Total Hrs: <span style={{fontWeight:'600'}}>{getTotalHrs()} hr</span></li>
-                                        </ul>
-                                    </li>
-                                </ul>
                             </div >
-                            <h3 style={{marginRight:'140px'}}>{username ? `Hi ${username }, time to practice your ${instrument}!` : ''}</h3>
+                            <h3 >{username ? `Hi ${username }, time to practice your ${instrument}!` : ''}</h3>
                             <ul className="navbar-nav ms-auto mb-2 mb-lg-0">
+                                 <li className="nav-item dropdown" style={{marginRight:'20px'}}>
+                                    <span className="nav-link dropdown-toggle btn navbar-drop" data-bs-toggle="dropdown" aria-expanded="false">
+                                        Stats
+                                    </span>
+                                    <ul className="dropdown-menu navbar-drop" aria-labelledby="navbarDropdown" style={{padding:'10px', width:'250px'}}>
+                                        <li>Avg Focus: <span style={{fontWeight:'600'}}>{getAvgFocus()}/10</span></li>
+                                        <li>Avg Productivity: <span style={{fontWeight:'600'}}>{getAvgProd()}/10</span></li>
+                                        <li>Avg Session: <span style={{fontWeight:'600'}}>{getAvgSession()} min</span></li>
+                                        <li>Total Hrs: <span style={{fontWeight:'600'}}>{getTotalHrs()} hr</span></li>
+                                    </ul>
+                                </li>
                                 <li className="nav-item dropdown" style={{marginRight:'10px'}}>
                                     <span className="nav-link dropdown-toggle btn navbar-drop navbar-drop-user"  data-bs-toggle="dropdown" aria-expanded="false">
                                         Edit User
