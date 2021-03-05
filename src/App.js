@@ -37,7 +37,7 @@ class App extends React.Component {
         {localStorage.token && 
           <>
             <Route exact path='/new-session' render={() => <SessionContainer />} />
-            <Route exact path='/sessions' render={routerProps => <CalendarPage historyRouterProp={this.props.history}/>} />
+            <Route exact path='/sessions' render={() => <CalendarPage historyRouterProp={this.props.history}/>} />
             <Route path='/sessions/:id' render={routerProps => <SessionView routerProps={routerProps}/>}/>
           </>
         }

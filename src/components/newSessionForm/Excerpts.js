@@ -3,8 +3,14 @@ import {connect} from 'react-redux'
 
 function Excerpts(props){
 
-    const prevExcerpts = []
-    props.prevSessions.forEach(sesh => sesh.excerpts.forEach(excerpt => prevExcerpts.push(excerpt)))
+    const excerptsDropdown = []
+    const addToDropdown = excerpt => {
+        if (!excerptsDropdown.includes(`${excerpt.composer} - ${excerpt.work} - ${excerpt.place}`)) {
+            excerptsDropdown.push(`${excerpt.composer} - ${excerpt.work} - ${excerpt.place}`)
+        }
+    }
+    props.prevSessions?.forEach(sesh => sesh.excerpts.forEach(excerpt => addToDropdown(excerpt)))
+    props.excerpts?.forEach(excerpt => addToDropdown(excerpt))
 
     return (
         <div style={{display: 'flex', flexDirection: 'column', marginBottom:'30px', minHeight:'150px'}}>
@@ -19,14 +25,14 @@ function Excerpts(props){
                     </div>
                     <div style={{alignSelf:'flex-end'}}>
                         <select style={{width:'350px'}}>
-                            {prevExcerpts.map(excerpt => <option >{`${excerpt.composer} - ${excerpt.work} - ${excerpt.place}`}</option>)}
+                            {excerptsDropdown.map(excerptString => <option>{excerptString}</option>)}
                         </select>
                         <button className='btn btn-outline-light btn-sm' type='button' style={{marginLeft:'10px'}} onClick={(e) => props.addRmvPieceExcEt(e, 'dropdown', 'excerpts')}>Add/Rmv</button> 
                     </div>         
                 </div>
             </div>
             <div style={{fontSize:'22px'}}>
-                {props.excerpts[0] ? props.excerpts.map(excerpt => <p style={{marginBottom:'3px'}}>{`${excerpt.composer} - ${excerpt.work} - ${excerpt.place}`}</p>) : ' '}
+                {props.excerpts.map(excerpt => <p style={{marginBottom:'3px'}}>{`${excerpt.composer} - ${excerpt.work} - ${excerpt.place}`}</p>)}
             </div>
         </div>
     )
