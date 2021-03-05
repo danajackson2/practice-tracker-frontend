@@ -57,3 +57,10 @@ export const updateUser = (updates) => {
         updates: updates
     }
 }
+
+export const updateSessions = (sessions) => {
+    return {
+        type: 'UPDATE_SESSIONS',
+        sessions: sessions
+    }
+}

@@ -1,9 +1,9 @@
 import React from 'react'
 
 function Timer(){
-
-    let timer = null
-
+    
+    window.timer = null
+    
     const updateTimer = () => { 
         const currTime = document.getElementById('timer-count').textContent
         const newSeconds = currTime.split(':')[0]*3600 + currTime.split(':')[1]*60 + currTime.split(':')[2]*1 + 1
@@ -14,14 +14,14 @@ function Timer(){
     }
 
     const startTimer = () => {
-        if (timer === null){ 
-            return timer = setInterval(updateTimer, 1000)
+        if (window.timer === null){ 
+            return window.timer = setInterval(updateTimer, 1000)
         }
     }
 
     const stopTimer = () => {
-        clearInterval(timer)
-        timer = null
+        clearInterval(window.timer)
+        window.timer = null
     }
 
     return(

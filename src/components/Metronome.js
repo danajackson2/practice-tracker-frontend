@@ -1,5 +1,4 @@
 import React, { Component } from 'react'
-// import '../metronome_files/metronome.scss'
 import click1 from '../metronome_files/click1.wav'
 import click2 from '../metronome_files/click2.wav'
 

@@ -18,7 +18,7 @@ const initialState = {
                 date: '',
                 duration: '',
                 focus_rating: null,
-                prod_rating:null,
+                prod_rating: null,
                 notes: '',
                 etudes: [],
                 pieces: [],
@@ -109,6 +109,10 @@ const someReducer = (state=initialState, action) => {
         case 'UPDATE_USER' :
             return {
                 ...state, current_user: {...state.current_user, username: action.updates.username, instrument: action.updates.instrument}
+            }
+        case 'UPDATE_SESSIONS' :
+            return {
+                ...state, current_user: {...state.current_user, userSessions: action.sessions}
             }
         default :
             return state

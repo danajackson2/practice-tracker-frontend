@@ -15,8 +15,8 @@ const Navbar = (props) => {
 
     const editUser = (e, user) => {
         e.preventDefault()
-        document.querySelector('ul.dropdown-menu').classList.remove('show')
-        document.querySelector('span.dropdown-toggle').classList.remove('show')
+        document.querySelector('ul.navbar-drop-user').classList.remove('show')
+        document.querySelector('span.navbar-drop-user').classList.remove('show')
         let update = {id: user.user_id}
         Array.from(e.target.querySelectorAll('input')).forEach(input => update[input.name] = input.value === '' ? user[input.name] : input.value)
         fetch(`${BASE_URL}/users/${user.user_id}`, {
@@ -41,15 +41,46 @@ const Navbar = (props) => {
         }
     }
 
+    const getAvgFocus = () => {
+        if (props.current_user.userSessions[0].focus_rating !== null) {
+            let focus = props.current_user.userSessions.map(sesh => sesh.focus_rating).reduce((a,b) => a+b, 0)/props.current_user.userSessions.length
+            return focus.toFixed(2)
+        }
+    }
+
+    const getAvgProd = () => {
+        if (props.current_user.userSessions[0].prod_rating !== null) {
+            let prod = props.current_user.userSessions.map(sesh => sesh.prod_rating).reduce((a,b) => a+b, 0)/props.current_user.userSessions.length
+            return prod.toFixed(2)
+        }
+    }
+
+    const getAvgSession = () => {
+        if (props.current_user.userSessions[0].duration !== '') {
+            let minsArr = props.current_user.userSessions.map(sesh => {
+                let time = sesh.duration.split(':')
+                return time[2]/60 + time[1]/1 + time[0]*60  
+            })
+            return Math.round(minsArr.reduce((a,b) => a+b)/minsArr.length)
+        }
+    }
+
+    const getTotalHrs = () => {
+        if (props.current_user.userSessions[0].duration !== '') {
+            let minsArr = props.current_user.userSessions.map(sesh => {
+                let time = sesh.duration.split(':')
+                return time[2]/60 + time[1]/1 + time[0]*60  
+            })
+            return Math.round(minsArr.reduce((a,b) => a+b)/60)
+        }
+    }
     const {username, instrument} = props.current_user
     
     return(
         <div >
-            {/* <NavLink id='top-name' to='/'><h1 >PracTrac</h1></NavLink> */}
             <div style={{display:'flex', justifyContent:'center', margin:'5px 0px 15px 0px'}}>
                 <NavLink id='top-name' to='/'><img src='logo1.png' width='200px' alt='logo'/></NavLink>
             </div>
-            {/* <h4 style={{textAlign:'center', color:'white'}}>{username ? `Hi ${username }, time to practice your ${instrument}!` : ''}</h4> */}
             <nav className="navbar navbar-custom navbar-expand-lg navbar-dark">
                 <div className="container-fluid">
                     <button className="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
@@ -59,16 +90,29 @@ const Navbar = (props) => {
                         {localStorage.token
                         ? <>
                             <div className="navbar-nav me-auto mb-2 mb-lg-0">
-                                <NavLink to='/new-session' className='btn' style={{textDecoration:'none', color:'white', marginLeft:'100px'}}>New Session</NavLink>
-                                <NavLink to='/sessions' className='btn' style={{textDecoration:'none', color:'white'}}>Past Sessions</NavLink>
+                                <NavLink to='/new-session' className='btn add-hover-effect' style={{marginLeft:'100px'}}>New Session</NavLink>
+                                <NavLink to='/sessions' className='btn add-hover-effect' style={{textDecoration:'none'}}>Past Sessions</NavLink>
+                                <ul className="navbar-nav ms-auto mb-2 mb-lg-0">
+                                    <li className="nav-item dropdown">
+                                        <span className="nav-link dropdown-toggle btn navbar-drop" data-bs-toggle="dropdown" aria-expanded="false">
+                                            Stats
+                                        </span>
+                                        <ul className="dropdown-menu navbar-drop" aria-labelledby="navbarDropdown" style={{padding:'10px', width:'400px'}}>
+                                            <li>Avg Focus: <span style={{fontWeight:'600'}}>{getAvgFocus()}/10</span></li>
+                                            <li>Avg Productivity: <span style={{fontWeight:'600'}}>{getAvgProd()}/10</span></li>
+                                            <li>Avg Session: <span style={{fontWeight:'600'}}>{getAvgSession()} min</span></li>
+                                            <li>Total Hrs: <span style={{fontWeight:'600'}}>{getTotalHrs()} hr</span></li>
+                                        </ul>
+                                    </li>
+                                </ul>
                             </div >
-                            <h4 style={{textAlign:'center', color:'white'}}>{username ? `Hi ${username }, time to practice your ${instrument}!` : ''}</h4>
+                            <h3 style={{marginRight:'140px'}}>{username ? `Hi ${username }, time to practice your ${instrument}!` : ''}</h3>
                             <ul className="navbar-nav ms-auto mb-2 mb-lg-0">
                                 <li className="nav-item dropdown" style={{marginRight:'10px'}}>
-                                    <span className="nav-link dropdown-toggle btn" id="navbarDropdown" data-bs-toggle="dropdown" aria-expanded="false">
+                                    <span className="nav-link dropdown-toggle btn navbar-drop navbar-drop-user"  data-bs-toggle="dropdown" aria-expanded="false">
                                         Edit User
                                     </span>
-                                    <ul className="dropdown-menu" aria-labelledby="navbarDropdown" style={{padding:'10px'}}>
+                                    <ul className="dropdown-menu navbar-drop-user" aria-labelledby="navbarDropdown" style={{padding:'10px'}}>
                                         <form onSubmit={(e) => editUser(e, props.current_user)} style={{marginRight:'10px'}}>  
                                             <input className='menu-item' placeholder={`${props.current_user.username}`} name='username'></input>
                                             <input className='menu-item' placeholder={`${props.current_user.instrument}`} name='instrument'></input>
@@ -77,7 +121,7 @@ const Navbar = (props) => {
                                         <button className='btn' onClick={deleteUser}>⚠️Delete User</button>
                                     </ul>
                                 </li>
-                                <li className="nav-item ms-auto btn" style={{color:'white', marginRight:'100px'}} onClick={logout}>Log Out</li>
+                                <li className="nav-item ms-auto btn " style={{color:'white', marginRight:'100px'}} onClick={logout}><a className='add-hover-effect'>Log Out</a></li>
                             </ul>
                         </>
                         :

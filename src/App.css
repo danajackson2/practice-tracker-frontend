@@ -189,3 +189,19 @@
     color:#1C3334;
     background-color: #376E6F
     }
+
+  a.add-hover-effect {
+    color:white;
+    opacity: 0.6;
+    font-size: 20px;
+    text-decoration: none;
+  }
+
+  a.add-hover-effect:hover {
+    color:white;
+    opacity: 0.9;
+  }
+
+  .navbar-drop {
+    font-size: 20px
+  }

@@ -45,7 +45,7 @@ function LoginSignup(props){
     return (
         <ul className="navbar-nav ms-auto mb-2 mb-lg-0 ">
             <li className="nav-item dropdown">
-                <button className="nav-link dropdown-toggle btn" id="navbarDropdown" data-bs-toggle="dropdown" aria-expanded="false">
+                <button className="nav-link dropdown-toggle btn navbar-drop" data-bs-toggle="dropdown" aria-expanded="false">
                     Log In
                 </button>
                 <ul className="dropdown-menu" aria-labelledby="navbarDropdown" style={{padding:'10px'}}>
@@ -57,7 +57,8 @@ function LoginSignup(props){
                 </ul>
             </li>
             <li className="nav-item dropdown" style={{marginRight:'150px'}}>
-                <button className="nav-link dropdown-toggle btn" id="navbarDropdown" data-bs-toggle="dropdown" aria-expanded="false">
+                {/* for button below and others it had id="navbarDropdown" */}
+                <button className="nav-link dropdown-toggle btn navbar-drop"  data-bs-toggle="dropdown" aria-expanded="false">
                     Sign Up
                 </button>
                 <ul className="dropdown-menu" aria-labelledby="navbarDropdown" style={{padding:'10px'}}>

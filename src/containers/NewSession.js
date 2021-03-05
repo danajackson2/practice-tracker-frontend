@@ -56,6 +56,8 @@ function NewSession(props){
             document.querySelector('#notes-text-area').value = ''
             document.querySelector('#players').innerHTML = ''
             document.getElementById('timer-count').textContent = '00:00:00'
+            clearInterval(window.timer)
+            window.timer = null
         }
     }
 

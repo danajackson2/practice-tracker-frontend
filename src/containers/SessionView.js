@@ -1,6 +1,7 @@
 import React, {useEffect, useState} from 'react'
 import Player from '../components/newSessionForm/Player'
 import {connect} from 'react-redux'
+import {updateSessions} from '../redux/actions/actions'
 const BASE_URL = 'http://localhost:3000'
 
 function SessionView(props){
@@ -36,7 +37,7 @@ function SessionView(props){
                 headers: {Authorization: `Bearer ${localStorage.token}`}
             })
             .then(res => res.json())
-            .then(console.log)
+            .then(data => props.updateSessions(data))
             props.routerProps.history.push('/sessions')
         }
 
@@ -98,4 +99,4 @@ const mapStateToProps = state => {
     }
 }
 
-export default connect(mapStateToProps)(SessionView)
+export default connect(mapStateToProps, {updateSessions})(SessionView)
