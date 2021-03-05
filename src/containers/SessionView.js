@@ -5,7 +5,7 @@ import {updateSessions} from '../redux/actions/actions'
 const BASE_URL = 'http://localhost:3000'
 
 function SessionView(props){
-
+    
     const [recordings, setRecordings] = useState([])
     const [date, setDate] = useState('')
 
@@ -44,7 +44,7 @@ function SessionView(props){
     }
 
     return(
-        <div style={{borderStyle:'solid', borderWidth:'1px', color:'white', width:'800px', display:'flex', margin:'auto', flexDirection:'column', padding:'15px', marginTop:'40px'}}>
+        <div style={{borderStyle:'solid', borderWidth:'1px', color:'white', width:'800px', display:'flex', margin:'auto', flexDirection:'column', padding:'15px', marginTop:'40px', marginBottom:'50px'}}>
             <h4 style={{alignSelf:'center', marginBottom:'20px'}}>{`Session ${session.id}`}</h4>
             <div style={{display:'flex', flexDirection:'row', justifyContent:'space-around'}}>
                 <h1>{date}</h1>

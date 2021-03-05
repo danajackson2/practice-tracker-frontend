@@ -42,6 +42,7 @@ function NewSession(props){
     }
 
     const saveSession = (e, user_id, date, duration) => {
+
         if (e.keyCode !== 13) {
             e.preventDefault()
             fetch(`${BASE_URL}/sessions`, {
@@ -62,7 +63,7 @@ function NewSession(props){
     }
 
     return(
-        <div id='new-session-div' className='col-9' style={{width:'850px', marginTop:'40px'}}>
+        <div id='new-session-div' className='col-9' style={{width:'850px', margin:'40px 0px 50px 0px'}}>
             <h1 style={{padding:'0px 0px 20px 0px'}}>Practice Session</h1>
             <div className='container'>
                 <form onSubmit={e => saveSession(e, props.user_id, document.getElementById('current-date').textContent, document.getElementById('timer-count').textContent)}>

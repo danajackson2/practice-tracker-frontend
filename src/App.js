@@ -38,7 +38,11 @@ class App extends React.Component {
           <>
             <Route exact path='/new-session' render={() => <SessionContainer />} />
             <Route exact path='/sessions' render={() => <CalendarPage historyRouterProp={this.props.history}/>} />
-            <Route path='/sessions/:id' render={routerProps => <SessionView routerProps={routerProps}/>}/>
+            <Route exact path='/sessions/:id' render={routerProps => {
+              if (this.props.userSessions.map(s => s.id).includes(parseInt(routerProps.match.params.id))) {
+                return <SessionView routerProps={routerProps}/>
+              }
+            }}/>
           </>
         }
         <Route exact path='/' component={Welcome} />
@@ -46,5 +50,10 @@ class App extends React.Component {
     )
   }
 }
+const mapStateToProps = state => {
+  return {
+    userSessions: state.current_user.userSessions
+  }
+}
 
-export default withRouter(connect(null, {setCurrentUser})(App))
+export default withRouter(connect(mapStateToProps, {setCurrentUser})(App))
