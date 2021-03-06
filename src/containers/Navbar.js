@@ -92,7 +92,7 @@ const Navbar = (props) => {
                         ? <>
                             <div className="navbar-nav me-auto mb-2 mb-lg-0">
                                 <NavLink to='/new-session' className='btn add-hover-effect' style={{marginLeft:'100px'}}>New Session</NavLink>
-                                <NavLink to='/sessions' className='btn add-hover-effect' style={{textDecoration:'none'}}>Past Sessions</NavLink>
+                                <NavLink to='/history' className='btn add-hover-effect' style={{textDecoration:'none'}}>History</NavLink>
                             </div >
                             <h3 style={{height:'30px', overflow:'hidden', maxWidth:'600px'}}>{username ? `Hi ${username }, time to practice your ${instrument}!` : ''}</h3>
                             <ul className="navbar-nav ms-auto mb-2 mb-lg-0">

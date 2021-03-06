@@ -8,6 +8,7 @@ import SessionContainer from './containers/SessionContainer'
 import CalendarPage from './containers/CalendarPage'
 import SessionView from './containers/SessionView'
 import Welcome from './components/Welcome'
+import Performance from './containers/Performance'
 
 const BASE_URL = 'http://localhost:3000'
 class App extends React.Component {
@@ -18,8 +19,8 @@ class App extends React.Component {
     })
     .then(res => res.json())
     .then(data => {
-      const { username, user_id, instrument, userSessions } = data
-      data.username && this.props.setCurrentUser({username, user_id, instrument, userSessions})
+      const { username, user_id, instrument, userSessions, userPerformances } = data
+      data.username && this.props.setCurrentUser({username, user_id, instrument, userSessions, userPerformances})
     })
   }
 
@@ -37,12 +38,13 @@ class App extends React.Component {
         {localStorage.token && 
           <>
             <Route exact path='/new-session' render={() => <SessionContainer />} />
-            <Route exact path='/sessions' render={() => <CalendarPage historyRouterProp={this.props.history}/>} />
-            <Route exact path='/sessions/:id' render={routerProps => {
+            <Route exact path='/history' render={() => <CalendarPage historyRouterProp={this.props.history}/>} />
+            <Route exact path='/history/:id' render={routerProps => {
               if (this.props.userSessions.map(s => s.id).includes(parseInt(routerProps.match.params.id))) {
                 return <SessionView routerProps={routerProps}/>
               }
             }}/>
+            <Route exact path='/performance' render={() => <Performance/>}/>
           </>
         }
         <Route exact path='/' component={Welcome} />

@@ -26,6 +26,15 @@ const initialState = {
                 longtones: [],
                 scales: []
             }
+        ],
+        userPerformances : [
+            {
+                id: null,
+                date: '',
+                composer: '',
+                piece: '',
+                event: ''
+            }
         ]
     },
     session: {
@@ -37,6 +46,12 @@ const initialState = {
         notes: '',
         prod_rating: 0,
         focus_rating: 0
+    },
+    performance : {
+        date: '',
+        composer: '',
+        piece: '',
+        event: ''
     }
 }
 
@@ -113,6 +128,10 @@ const someReducer = (state=initialState, action) => {
         case 'UPDATE_SESSIONS' :
             return {
                 ...state, current_user: {...state.current_user, userSessions: action.sessions}
+            }
+        case 'HANDLE_PERF_DATA' :
+            return {
+                ...state, performance: {...state.performance, [action.name]: action.value}
             }
         default :
             return state

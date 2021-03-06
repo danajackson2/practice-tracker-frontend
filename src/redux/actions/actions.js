@@ -64,3 +64,11 @@ export const updateSessions = (sessions) => {
         sessions: sessions
     }
 }
+
+export const handlePerfData = (e) => {
+    return {
+        type: 'HANDLE_PERF_DATA',
+        value: e.target.value,
+        name: e.target.name 
+    }
+}
