@@ -133,6 +133,10 @@ const someReducer = (state=initialState, action) => {
             return {
                 ...state, performance: {...state.performance, [action.name]: action.value}
             }
+        case 'UPDATE_PERF_LIST' :
+            return {
+                ...state, current_user: {...state.current_user, userPerformances: action.list}
+            }
         default :
             return state
     }

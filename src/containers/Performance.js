@@ -1,12 +1,10 @@
-import React, {useState} from 'react'
-import {handlePerfData} from '../redux/actions/actions'
+import React from 'react'
+import {handlePerfData, updatePerfList} from '../redux/actions/actions'
 import {connect} from 'react-redux'
 
 const BASE_URL = 'http://localhost:3000'
 
 function Performance(props){
-    
-    const [sortedList, setSortedList] = useState(props.userPerformances[0].id !== null && props.userPerformances)
 
     const savePerf = (e) => {
         if (e.target.querySelectorAll('input')[0].value !== ''){
@@ -29,22 +27,22 @@ function Performance(props){
 
     const sortByDate = () => {
         let dateSort = props.userPerformances.sort((a, b) => a.date.localeCompare(b.date))
-        setSortedList(dateSort)
+        props.updatePerfList(dateSort)
     }
 
     const sortByComposer = () => {
         let composerSort = props.userPerformances.sort((a, b) => a.composer.localeCompare(b.composer))
-        setSortedList(composerSort)
+        props.updatePerfList(composerSort)
     }
 
     const sortByPiece = () => {
         let pieceSort = props.userPerformances.sort((a, b) => a.piece.localeCompare(b.piece))
-        setSortedList(pieceSort)
+        props.updatePerfList(pieceSort)
     }
 
     const sortByEvent = () => {
         let eventSort = props.userPerformances.sort((a, b) => a.event.localeCompare(b.event))
-        setSortedList(eventSort)
+        props.updatePerfList(eventSort)
     }
 
     const formatDate = date => {
@@ -97,4 +95,4 @@ const mapStateToProps = state => {
     }
 }
 
-export default connect(mapStateToProps, {handlePerfData})(Performance)
+export default connect(mapStateToProps, {handlePerfData, updatePerfList})(Performance)

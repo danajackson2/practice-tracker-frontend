@@ -72,3 +72,10 @@ export const handlePerfData = (e) => {
         name: e.target.name 
     }
 }
+
+export const updatePerfList = (newlySortedList) => {
+    return {
+        type: 'UPDATE_PERF_LIST',
+        list: newlySortedList
+    }
+}
