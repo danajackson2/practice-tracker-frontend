@@ -73,9 +73,16 @@ export const handlePerfData = (e) => {
     }
 }
 
-export const updatePerfList = (newlySortedList) => {
+export const sortPerfList = (newlySortedList) => {
     return {
-        type: 'UPDATE_PERF_LIST',
+        type: 'SORT_PERF_LIST',
         list: newlySortedList
+    }
+}
+
+export const updatePerformances = (perfArray) => {
+    return {
+        type: 'UPDATE_PERFORMANCES',
+        perfArray: perfArray
     }
 }

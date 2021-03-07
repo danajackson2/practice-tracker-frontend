@@ -1,5 +1,5 @@
 import React from 'react'
-import {handlePerfData, updatePerfList} from '../redux/actions/actions'
+import {handlePerfData, sortPerfList, updatePerformances} from '../redux/actions/actions'
 import {connect} from 'react-redux'
 
 const BASE_URL = 'http://localhost:3000'
@@ -18,38 +18,23 @@ function Performance(props){
                 body: JSON.stringify({...props.performance, user_id: props.user_id})
             })
             .then(res => res.json())
-            .then(console.log)
+            .then(data => props.updatePerformances(data))
         } else{
             alert('Must include date for performance')
         }
         Array.from(e.target.querySelectorAll('input')).forEach(i => i.value = '')
     }
 
-    const sortByDate = () => {
-        let dateSort = props.userPerformances.sort((a, b) => a.date.localeCompare(b.date))
-        props.updatePerfList(dateSort)
-    }
-
-    const sortByComposer = () => {
-        let composerSort = props.userPerformances.sort((a, b) => a.composer.localeCompare(b.composer))
-        props.updatePerfList(composerSort)
-    }
-
-    const sortByPiece = () => {
-        let pieceSort = props.userPerformances.sort((a, b) => a.piece.localeCompare(b.piece))
-        props.updatePerfList(pieceSort)
-    }
-
-    const sortByEvent = () => {
-        let eventSort = props.userPerformances.sort((a, b) => a.event.localeCompare(b.event))
-        props.updatePerfList(eventSort)
+    const sortBy = (param) => {
+        let sorted = props.userPerformances.sort((a, b) => a[param].localeCompare(b[param]))
+        props.sortPerfList(sorted)
     }
 
     const formatDate = date => {
-        if (date !== ''){
-            let day = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'][new Date(date).getDay()]
+        if (date !== '' && date !== null){
+            let day = ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'][new Date(date).getDay()]
             let month = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'][new Date(date).getMonth()]
-            let dayNum = date?.split('-')[2]?.replace('0', '')
+            let dayNum = date.split('-')[2]?.replace('0', '')
             return `${day} ${month} ${dayNum}, ${date.split('-')[0]}`        
         }
     }
@@ -67,10 +52,10 @@ function Performance(props){
             <h1 style={{marginTop:'60px'}}>All Performances</h1>
             <div style={{display:'flex', flexDirection:'column', width:'1000px', margin:'20px'}}>
                 <div style={{display:'flex', borderBottom: '1px solid white'}}>
-                    <div onClick={sortByDate} className={'add-hover-effect'}  style={{width:'200px'}}>Date <span style={{fontSize:'16px'}}>▽</span></div>
-                    <div onClick={sortByComposer} className={'add-hover-effect'}  style={{width:'250px'}}>Composer <span style={{fontSize:'16px'}}>▽</span></div>
-                    <div onClick={sortByPiece} className={'add-hover-effect'}  style={{width:'250px'}}>Piece <span style={{fontSize:'16px'}}>▽</span></div>
-                    <div onClick={sortByEvent} className={'add-hover-effect'}  style={{width:'300px'}}>Event <span style={{fontSize:'16px'}}>▽</span></div>
+                    <div onClick={() => sortBy('date')} className={'add-hover-effect'} style={{width:'200px'}}>Date <span style={{fontSize:'16px'}}>▽</span></div>
+                    <div onClick={() => sortBy('composer')} className={'add-hover-effect'} style={{width:'250px'}}>Composer <span style={{fontSize:'16px'}}>▽</span></div>
+                    <div onClick={() => sortBy('piece')} className={'add-hover-effect'} style={{width:'250px'}}>Piece <span style={{fontSize:'16px'}}>▽</span></div>
+                    <div onClick={() => sortBy('event')} className={'add-hover-effect'} style={{width:'300px'}}>Event <span style={{fontSize:'16px'}}>▽</span></div>
                 </div>
                 {props.userPerformances.map(perf => {
                     return (
@@ -91,8 +76,9 @@ function Performance(props){
 const mapStateToProps = state => {
     return {
         user_id: state.current_user.user_id,
+        performance: state.performance,
         userPerformances: state.current_user.userPerformances
     }
 }
 
-export default connect(mapStateToProps, {handlePerfData, updatePerfList})(Performance)
+export default connect(mapStateToProps, {handlePerfData, sortPerfList, updatePerformances})(Performance)

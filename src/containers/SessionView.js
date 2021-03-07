@@ -5,7 +5,7 @@ import {updateSessions} from '../redux/actions/actions'
 const BASE_URL = 'http://localhost:3000'
 
 function SessionView(props){
-    
+
     const [recordings, setRecordings] = useState([])
     const [date, setDate] = useState('')
 
@@ -24,7 +24,7 @@ function SessionView(props){
     }, [session.date, session.id])
 
     const formatDate = (date) =>{
-        let day = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'][new Date(date).getDay()]
+        let day = ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'][new Date(date).getDay()]
         let month = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'][new Date(date).getMonth()]
         let dayNum = date?.split('-')[2]?.replace('0', '')
         return `${day} ${month} ${dayNum}, ${date.split('-')[0]}`
@@ -38,7 +38,7 @@ function SessionView(props){
             })
             .then(res => res.json())
             .then(data => props.updateSessions(data))
-            props.routerProps.history.push('/sessions')
+            props.routerProps.history.push('/history')
         }
 
     }

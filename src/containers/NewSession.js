@@ -8,7 +8,7 @@ import Pieces from '../components/newSessionForm/Pieces'
 import Excerpts from '../components/newSessionForm/Excerpts'
 import Notes from '../components/newSessionForm/Notes'
 import Ratings from '../components/newSessionForm/Ratings'
-import {handleItems, clearSessionForm} from '../redux/actions/actions'
+import {handleItems, clearSessionForm, updateSessions} from '../redux/actions/actions'
 import {connect} from 'react-redux'
 
 const BASE_URL = 'http://localhost:3000'
@@ -42,7 +42,6 @@ function NewSession(props){
     }
 
     const saveSession = (e, user_id, date, duration) => {
-
         if (e.keyCode !== 13) {
             e.preventDefault()
             fetch(`${BASE_URL}/sessions`, {
@@ -51,7 +50,8 @@ function NewSession(props){
                 body: JSON.stringify({session: {...props.session, date: date, duration: duration, user_id: user_id}})
             })
             .then(res => res.json())
-            .then(data => alert(data.message))
+            .then(data => props.updateSessions(data))
+            
             props.clearSessionForm()
             document.querySelectorAll('.lt-checkbox').forEach(box => box.checked = false)
             document.querySelector('#notes-text-area').value = ''
@@ -106,4 +106,4 @@ const mapStateToProps = state => {
     }
 }
 
-export default connect(mapStateToProps, {handleItems, clearSessionForm})(NewSession)
+export default connect(mapStateToProps, {handleItems, clearSessionForm, updateSessions})(NewSession)

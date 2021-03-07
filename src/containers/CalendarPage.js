@@ -6,9 +6,7 @@ import moment from 'moment'
 import 'react-big-calendar/lib/css/react-big-calendar.css'
 
 function CalendarPage(props){
-    //performance events purple
-    Array.from(document.getElementsByClassName('rbc-event-content')).filter(el => el.textContent.includes('Performance')).forEach(item => item.parentElement.style.backgroundColor = '#2E151B')
-
+    
     const localizer = momentLocalizer(moment)
     
     // calendar puts events one day too early! this is to correct.
@@ -46,6 +44,10 @@ function CalendarPage(props){
         ? props.historyRouterProp.push(`/history/${e.resource}`)
         : props.historyRouterProp.push(`/performance`)
     }
+
+    const backgroundColor = (e) => {
+        return e.title.includes('Performance') && {style:{backgroundColor: '#2E151B'}}
+    }
     
     return(
         <div style={{display:'flex', alignItems:'center', flexDirection:'column', marginTop:'40px'}}>
@@ -60,6 +62,7 @@ function CalendarPage(props){
                 onSelectEvent={selectEvent}
                 popup={true}
                 views={['month']}
+                eventPropGetter={backgroundColor}
             />
             </div>
         </div>
