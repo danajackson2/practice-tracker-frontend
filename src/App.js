@@ -53,14 +53,14 @@ class App extends React.Component {
         <Navbar historyRouterProp={this.props.history}/>
         {localStorage.token && 
           <>
-            <Route exact path='/new-session' render={routerProps => <SessionContainer onLeave={this.clearNewSession()} clearNewSession={this.clearNewSession}/>} />
+            <Route exact path='/new-session' render={routerProps => <SessionContainer onLeave={this.clearNewSession} clearNewSession={this.clearNewSession}/>} />
             <Route exact path='/history' render={() => <CalendarPage historyRouterProp={this.props.history}/>} />
             <Route exact path='/history/:id' render={routerProps => {
               if (this.props.userSessions.map(s => s.id).includes(parseInt(routerProps.match.params.id))) {
                 return <SessionView routerProps={routerProps}/>
               }
             }}/>
-            <Route exact path='/performance' render={() => <Performance/>}/>
+            <Route exact path='/performance' render={() => <Performance />}/>
           </>
         }
         <Route exact path='/' component={Welcome} />

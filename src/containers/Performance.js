@@ -1,5 +1,5 @@
 import React from 'react'
-import {handlePerfData, sortPerfList, updatePerformances} from '../redux/actions/actions'
+import {handlePerfData, sortPerfList, updatePerformances, selectPerf} from '../redux/actions/actions'
 import {connect} from 'react-redux'
 
 const BASE_URL = 'http://localhost:3000'
@@ -23,6 +23,7 @@ function Performance(props){
             alert('Must include date for performance')
         }
         Array.from(e.target.querySelectorAll('input')).forEach(i => i.value = '')
+        props.selectPerf(0)
     }
 
     const sortBy = (param) => {
@@ -58,8 +59,17 @@ function Performance(props){
                     <div onClick={() => sortBy('event')} className={'add-hover-effect'} style={{width:'300px'}}>Event <span style={{fontSize:'16px'}}>▽</span></div>
                 </div>
                 {props.userPerformances.map(perf => {
-                    return (
-                        <div style={{display:'flex', fontSize:'20px', overflow:'hidden'}}>
+                    return perf.id === props.selectedPerfId
+                    ? (
+                        <div id={`perf${perf.id}`} style={{display:'flex', fontSize:'20px', overflow:'hidden', backgroundColor:'#597387'}}>
+                            <div style={{width:'200px'}}>{formatDate(perf.date)}</div>
+                            <div style={{width:'250px'}}>{perf.composer}</div>
+                            <div style={{width:'250px'}}>{perf.piece}</div>
+                            <div style={{width:'300px'}}>{perf.event}</div>
+                        </div>
+                    )
+                    : (
+                        <div id={`perf${perf.id}`} style={{display:'flex', fontSize:'20px', overflow:'hidden'}}>
                             <div style={{width:'200px'}}>{formatDate(perf.date)}</div>
                             <div style={{width:'250px'}}>{perf.composer}</div>
                             <div style={{width:'250px'}}>{perf.piece}</div>
@@ -67,7 +77,6 @@ function Performance(props){
                         </div>
                     )
                 })}
-                
             </div>
         </div>
     )
@@ -77,8 +86,9 @@ const mapStateToProps = state => {
     return {
         user_id: state.current_user.user_id,
         performance: state.performance,
-        userPerformances: state.current_user.userPerformances
+        userPerformances: state.current_user.userPerformances,
+        selectedPerfId : state.selectedPerf
     }
 }
 
-export default connect(mapStateToProps, {handlePerfData, sortPerfList, updatePerformances})(Performance)
+export default connect(mapStateToProps, {handlePerfData, sortPerfList, updatePerformances, selectPerf})(Performance)

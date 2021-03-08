@@ -86,3 +86,10 @@ export const updatePerformances = (perfArray) => {
         perfArray: perfArray
     }
 }
+
+export const selectPerf = (perf_id) => {
+    return {
+        type: 'SELECT_PERF',
+        perf_id: perf_id
+    }
+}

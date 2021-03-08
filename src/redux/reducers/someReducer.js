@@ -52,7 +52,8 @@ const initialState = {
         composer: '',
         piece: '',
         event: ''
-    }
+    },
+    selectedPerf : 0
 }
 
 const someReducer = (state=initialState, action) => {
@@ -141,6 +142,10 @@ const someReducer = (state=initialState, action) => {
             debugger
             return {
                 ...state, current_user: {...state.current_user, userPerformances: action.perfArray}
+            }
+        case 'SELECT_PERF':
+            return {
+                ...state, selectedPerf: action.perf_id
             }
         default :
             return state

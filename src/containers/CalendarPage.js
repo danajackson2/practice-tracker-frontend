@@ -1,6 +1,7 @@
 import React from 'react'
 import {NavLink} from 'react-router-dom'
 import {connect} from 'react-redux'
+import {selectPerf} from '../redux/actions/actions'
 import {Calendar, momentLocalizer} from 'react-big-calendar'
 import moment from 'moment'
 import 'react-big-calendar/lib/css/react-big-calendar.css'
@@ -42,7 +43,7 @@ function CalendarPage(props){
     const selectEvent = e => {
         e.title.includes('Session')
         ? props.historyRouterProp.push(`/history/${e.resource}`)
-        : props.historyRouterProp.push(`/performance`)
+        : props.selectPerf(e.resource) && props.historyRouterProp.push(`/performance`)
     }
 
     const backgroundColor = (e) => {
@@ -51,7 +52,7 @@ function CalendarPage(props){
     
     return(
         <div style={{display:'flex', alignItems:'center', flexDirection:'column', marginTop:'40px'}}>
-            <NavLink to='/performance' className='btn add-hover-effect' style={{textDecoration:'none'}}><button className='btn btn-outline-light'>Add a Performance</button></NavLink>
+            <NavLink to='/performance' onClick={() => props.selectPerf(0)} className='btn add-hover-effect' style={{textDecoration:'none'}}><button className='btn btn-outline-light'>Add a Performance</button></NavLink>
             <div style={{height:'1000px'}}>
             <Calendar
                 localizer={localizer}
@@ -77,4 +78,4 @@ const mapStateToProps = state => {
     }
 }
 
-export default connect(mapStateToProps)(CalendarPage)
+export default connect(mapStateToProps, {selectPerf})(CalendarPage)
