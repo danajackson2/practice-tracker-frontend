@@ -13,13 +13,13 @@ function Excerpts(props){
     props.excerpts?.forEach(excerpt => addToDropdown(excerpt))
 
     return (
-        <div style={{display: 'flex', flexDirection: 'column', marginBottom:'30px', minHeight:'150px'}}>
-            <div style={{display:'flex', flexDirection: 'row', justifyContent:'space-between'}}>
+        <div className={'new-session-item'}>
+            <div className={'new-session-item-row'}>
                 <h4>Excerpts</h4>
-                <div style={{display:'flex', flexDirection: 'column', justifyContent:'flex-end'}}>
-                    <div style={{display: 'flex', justifyContent: 'flex-end', marginBottom:'10px'}}>
-                        <input name='composer' placeholder='Composer' style={{width:'200px', marginLeft:'10px'}}/>
-                        <input name='work' placeholder='Work' style={{width:'200px', marginLeft:'10px'}}/>
+                <div className={'new-session-item-input'}>
+                    <div className={'input-container'}>
+                        <input className={'input-box'} name='composer' placeholder='Composer'/>
+                        <input className={'input-box'} name='work' placeholder='Work'/>
                         <input name='place' placeholder='Place' style={{width:'100px', marginLeft:'10px'}}/>    
                         <button className='btn btn-outline-light btn-sm' type='button' style={{marginLeft:'10px'}} onClick={(e) => props.addRmvPieceExcEt(e, 'input', 'excerpts')}>Add/Rmv</button>                    
                     </div>

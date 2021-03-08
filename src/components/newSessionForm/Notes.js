@@ -4,9 +4,9 @@ import {handleNotes} from '../../redux/actions/actions'
 
 function Notes(props){
     return (
-        <div className='col' >
+        <div className='col' style={{height:'300px'}}>
             <h4 style={{float:'left'}}>Notes</h4>
-            <textarea id='notes-text-area' style={{width:'100%', height:'80%', fontSize:'14px'}} onChange={e => props.handleNotes(e.target.value)}/>
+            <textarea id='notes-text-area' className={'notes-box'} onChange={e => props.handleNotes(e.target.value)}/>
         </div>
     )
 }

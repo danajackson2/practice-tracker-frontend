@@ -13,22 +13,21 @@ function Pieces(props){
     props.pieces?.forEach(piece => addToDropdown(piece))
 
     return (
-        <div style={{display: 'flex', flexDirection: 'column', marginBottom:'30px', minHeight:'150px'}}>
-            <div style={{display:'flex', flexDirection: 'row', justifyContent:'space-between'}}>
+        <div className={'new-session-item'}>
+            <div className={'new-session-item-row'}>
                 <h4 >Pieces</h4>
-                <div style={{display:'flex', flexDirection: 'column', justifyContent:'flex-end'}}>
-                    <div style={{display: 'flex', justifyContent: 'flex-end', marginBottom:'10px'}}>
-                        <input name='composer' placeholder='Composer' style={{width:'220px', marginLeft:'10px'}}/>
-                        <input name='title' placeholder='Title' style={{width:'220px', marginLeft:'10px'}}/>    
+                <div className={'new-session-item-input'}>
+                    <div className={'input-container'}>
+                        <input className={'input-box'} name='composer' placeholder='Composer'/>
+                        <input className={'input-box'} name='title' placeholder='Title'/>    
                         <button className='btn btn-outline-light btn-sm'  style={{marginLeft:'10px'}} type='button' onClick={(e) => props.addRmvPieceExcEt(e, 'input', 'pieces')}>Add/Rmv</button>                           
                     </div>
-           
-                <div style={{alignSelf:'flex-end'}}>
-                    <select style={{width:'350px'}}>
-                        {piecesDropdown.map(pieceString => <option>{pieceString}</option>)}
-                    </select>
-                    <button className='btn btn-outline-light btn-sm' style={{marginLeft:'10px'}} type='button' onClick={(e) => props.addRmvPieceExcEt(e, 'dropdown', 'pieces')}>Add/Rmv</button>
-                </div>
+                    <div style={{alignSelf:'flex-end'}}>
+                        <select style={{width:'350px'}}>
+                            {piecesDropdown.map(pieceString => <option>{pieceString}</option>)}
+                        </select>
+                        <button className='btn btn-outline-light btn-sm' style={{marginLeft:'10px'}} type='button' onClick={(e) => props.addRmvPieceExcEt(e, 'dropdown', 'pieces')}>Add/Rmv</button>
+                    </div>
                 </div>
             </div>
             <div style={{fontSize:'22px'}}>

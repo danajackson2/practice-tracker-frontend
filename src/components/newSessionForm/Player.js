@@ -45,12 +45,12 @@ function Player(props){
     return (
         <div className="audio-player">
             <audio src={props.data.url} id={`audio${props.data.id}`} onEnded={endOfClip} onTimeUpdate={updateTime} onLoadedMetadata={updateTime}/>
-            <div style={{display:'flex', flexDirection:'row', justifyContent:'space-between', alignItems:'center', fontSize:'20px'}}>
+            <div className={'player-controls'}>
                 <div style={{display:'flex', alignItems:'center'}}>
-                    <button className='btn btn-outline-light' id={`playAudio${props.data.id}`} onClick={e => togglePlay(e)} style={{width:'40px', height:'40px', borderRadius:'20px', margin:'0px'}}>{'>'}</button>
-                    {props.deleteOption && <span onClick={() => window.confirm('Are you sure you want to delete this recording?') && deleteRecording(props.data.id)} style={{fontSize:'30px', marginLeft:'10px', padding:'0'}} className='btn'>🗑</span>}   
+                    <button className='btn btn-outline-light audio-play-btn' id={`playAudio${props.data.id}`} onClick={e => togglePlay(e)}>{'>'}</button>
+                    {props.deleteOption && <span className='btn trashcan' onClick={() => window.confirm('Are you sure you want to delete this recording?') && deleteRecording(props.data.id)} >🗑</span>}   
                     </div>
-                <div>{props.data.name}</div>
+                <div style={{textOverflow:'ellipsis'}}>{props.data.name}</div>
                 <div id={`time-left${props.data.id}`}>{''}</div> 
             </div>
         </div>

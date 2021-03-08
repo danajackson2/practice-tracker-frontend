@@ -46,7 +46,7 @@ function Drones(){
     }
 
     return(
-        <div style={{borderStyle: 'solid', borderWidth:'1px', borderRadius:'10px', minHeight:'250px'}}>
+        <div className={'toolbox-unit'}>
             <h4 style={{marginTop:'10px'}}>Drones</h4>
             <p>{'( A 440 )'}</p>
             <hr style={{margin:'5px 15px 15px 15px'}}></hr>

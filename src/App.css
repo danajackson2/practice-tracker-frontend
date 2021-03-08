@@ -31,6 +31,7 @@
   color:#DA7B93;
   text-decoration: none;
   font-size: 50px;
+  margin: 10px;
 }
 
 .navbar-custom {
@@ -216,4 +217,175 @@
 
   .navbar-drop {
     font-size: 20px
+  }
+
+  .new-session-item {
+    display: flex; 
+    flex-direction: column; 
+    margin-bottom: 30px; 
+    min-height: 150px;
+  } 
+
+  .new-session-item-row {
+    display:flex;
+    flex-direction: row; 
+    justify-content: space-between;
+  }
+
+  .new-session-item-input {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+  }
+
+  .input-container {
+    display: flex;
+    justify-content: flex-end;
+    margin-bottom: 10px
+  }
+
+  .input-box {
+    width: 220px;
+    margin-left: 10px;
+  }
+
+  .notes-box {
+    width: 100%;
+    height: 80%;
+    resize: none;
+    font-size: 16px;
+    overflow: scroll;
+  }
+ 
+  .player-controls {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 20px;
+    overflow: auto;
+  }
+
+  .audio-play-btn {
+    width: 40px;
+    height: 40px;
+    border-radius: 20px;
+    margin: 4px;
+  }
+
+  .trashcan {
+    font-size: 30px;
+    margin-left: 10px;
+    padding: 0;
+  }
+
+  .marg-30 {
+    margin-bottom: 30px;
+  }
+ 
+  .toolbox-unit {
+    border: 1px solid;
+    border-radius: 10px;
+    min-height: 250px;
+    margin-bottom: 20px;
+  }
+
+  .bold-font {
+    font-weight: 600;
+  }
+
+  .user-msg {
+    height: 30px;
+    overflow: hidden;
+    max-width: 600px;
+    text-align: center;
+  }
+
+  .save-sesh-btn {
+    width: 200px;
+    margin: 50px 0px 30px 0px;
+  }
+
+  .perf-form {
+    display: flex;
+    flex-direction: column;
+    width: 400px;
+    border: 1px solid white;
+    align-items: center;
+    padding: 20px;
+  }
+
+  .perf-page {
+    display: flex;
+    align-items: center;
+    margin: 40px 0px 50px 0px;
+    flex-direction: column;
+  }
+
+  .selected-perf {
+    background-color: #597387;
+  }
+
+  .perf-row {
+    display: flex;
+    font-size: 20px;
+    overflow: hidden;
+  }
+
+  .perf-input {
+    width: 300px;
+    margin: 10px;
+    font-size: 16px;
+  }
+
+  #session-view {
+    border: 1px solid;
+    width: 800px;
+    display: flex;
+    margin: 40px auto 50px;
+    flex-direction: column;
+    padding: 15px;   
+  }
+ 
+  .session-view-row {
+    display: flex;
+    flex-direction: row;
+    min-height: 80px;
+  }
+
+  .sv-item-list {
+    width: 100%;
+    font-size: 22px;
+    list-style: none;
+    padding-left: 0px;
+  } 
+
+  .sv-header {
+    width: 300px;
+  }
+
+  .sv-notes-rec {
+    display: flex;
+    flex-direction: row;
+    margin-bottom: 40px;
+    height: 300px;
+  }
+
+  .sv-notes-rec-col {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    margin-right: 10px;
+  }
+
+  .prod-focus {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+  }
+
+  .del-sesh {
+    margin-top: 40px;
+    width: 30%;
+    align-self: center;
   }

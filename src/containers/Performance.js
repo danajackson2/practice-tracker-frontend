@@ -41,27 +41,27 @@ function Performance(props){
     }
 
     return(
-        <div style={{display:'flex', alignItems:'center', marginTop:'40px', flexDirection:'column'}}>
+        <div className={'perf-page'}>
             <h1 >Add New Performance</h1>
-            <form onSubmit={savePerf} style={{display:'flex', flexDirection:'column', width:'400px', border:'1px solid white', alignItems:'center', padding:'20px'}}>
-                <input onChange={props.handlePerfData} name='date' type='date' placeholder='Piece' style={{width:'200px', margin:'10px', fonstSize:'20px'}}></input>
-                <input onChange={props.handlePerfData} name='composer' placeholder='Composer' style={{width:'300px', margin:'10px', fonstSize:'20px'}}></input>
-                <input onChange={props.handlePerfData} name='piece' placeholder='Piece' style={{width:'300px', margin:'10px', fonstSize:'20px'}}></input>
-                <input onChange={props.handlePerfData} name='event' placeholder='Event' style={{width:'300px', margin:'10px', fonstSize:'20px'}}></input>
+            <form onSubmit={savePerf} className={'perf-form'}>
+                <input className={'perf-input'} onChange={props.handlePerfData} name='date' type='date' placeholder='Piece' style={{width:'200px'}}></input>
+                <input className={'perf-input'} onChange={props.handlePerfData} name='composer' placeholder='Composer'></input>
+                <input className={'perf-input'} onChange={props.handlePerfData} name='piece' placeholder='Piece'></input>
+                <input className={'perf-input'}  onChange={props.handlePerfData} name='event' placeholder='Event'></input>
                 <button type='submit' className='btn btn-outline-light' style={{width:'200px', margin:'10px'}}>Submit</button>
             </form>
             <h1 style={{marginTop:'60px'}}>All Performances</h1>
-            <div style={{display:'flex', flexDirection:'column', width:'1000px', margin:'20px'}}>
+            <div>
                 <div style={{display:'flex', borderBottom: '1px solid white'}}>
                     <div onClick={() => props.changeSortListBy('date')} className={'add-hover-effect'} style={{width:'200px'}}>Date <span style={{fontSize:'16px'}}>▽</span></div>
                     <div onClick={() => props.changeSortListBy('composer')} className={'add-hover-effect'} style={{width:'250px'}}>Composer <span style={{fontSize:'16px'}}>▽</span></div>
                     <div onClick={() => props.changeSortListBy('piece')} className={'add-hover-effect'} style={{width:'250px'}}>Piece <span style={{fontSize:'16px'}}>▽</span></div>
                     <div onClick={() => props.changeSortListBy('event')} className={'add-hover-effect'} style={{width:'300px'}}>Event <span style={{fontSize:'16px'}}>▽</span></div>
                 </div>
-                {sortBy(props.sortListBy).map(perf => {
+                {sortBy(props.sortListBy)?.map(perf => {
                     return perf.id === props.selectedPerfId
                     ? (
-                        <div id={`perf${perf.id}`} style={{display:'flex', fontSize:'20px', overflow:'hidden', backgroundColor:'#597387'}}>
+                        <div id={`perf${perf.id}`} className={'perf-row selected-perf'}>
                             <div style={{width:'200px'}}>{formatDate(perf.date)}</div>
                             <div style={{width:'250px'}}>{perf.composer}</div>
                             <div style={{width:'250px'}}>{perf.piece}</div>
@@ -69,7 +69,7 @@ function Performance(props){
                         </div>
                     )
                     : (
-                        <div id={`perf${perf.id}`} style={{display:'flex', fontSize:'20px', overflow:'hidden'}}>
+                        <div id={`perf${perf.id}`} className={'perf-row'}>
                             <div style={{width:'200px'}}>{formatDate(perf.date)}</div>
                             <div style={{width:'250px'}}>{perf.composer}</div>
                             <div style={{width:'250px'}}>{perf.piece}</div>

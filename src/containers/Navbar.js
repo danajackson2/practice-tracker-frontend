@@ -72,8 +72,8 @@ const Navbar = (props) => {
     
     return(
         <div >
-            <div style={{display:'flex', justifyContent:'center', margin:'5px 0px 15px 0px'}}>
-                <NavLink id='top-name' to='/'><img src='logo1.png' width='200px' alt='logo'/></NavLink>
+            <div id={'top-name'} >
+                <NavLink  to='/'><img src='logo1.png' width='200px' alt='logo'/></NavLink>
             </div>
             <nav className="navbar navbar-custom navbar-expand-lg navbar-dark">
                 <div className="container-fluid">
@@ -85,19 +85,19 @@ const Navbar = (props) => {
                         ? <>
                             <div className="navbar-nav me-auto mb-2 mb-lg-0" style={{width:'400px'}}>
                                 <NavLink to='/new-session' className='btn add-hover-effect' style={{marginLeft:'100px'}}>New Session</NavLink>
-                                <NavLink to='/history' className='btn add-hover-effect' style={{textDecoration:'none'}}>History</NavLink>
+                                <NavLink to='/history' className='btn add-hover-effect' >History</NavLink>
                             </div >
-                            <h3 style={{height:'30px', overflow:'hidden', maxWidth:'600px'}}>{username ? `Hi ${username }, time to practice your ${instrument}!` : ''}</h3>
+                            <h3 className={'user-msg'}>{username ? `Hi ${username }, time to practice your ${instrument}!` : ''}</h3>
                             <ul className="navbar-nav ms-auto mb-2 mb-lg-0" style={{width:'400px'}}>
                                  <li className="nav-item dropdown" style={{marginRight:'20px'}}>
                                     <span className="nav-link dropdown-toggle btn navbar-drop" data-bs-toggle="dropdown" aria-expanded="false">
                                         Stats
                                     </span>
                                     <ul className="dropdown-menu navbar-drop" aria-labelledby="navbarDropdown" style={{padding:'10px', width:'250px'}}>
-                                        <li>Avg Focus: <span style={{fontWeight:'600'}}>{getAvgFocus()}/10</span></li>
-                                        <li>Avg Productivity: <span style={{fontWeight:'600'}}>{getAvgProd()}/10</span></li>
-                                        <li>Avg Session: <span style={{fontWeight:'600'}}>{getAvgSession()} min</span></li>
-                                        <li>Total Time: <span style={{fontWeight:'600'}}>{getTotalHrs()} hr</span></li>
+                                        <li>Avg Focus: <span className={'bold-font'}>{getAvgFocus()}/10</span></li>
+                                        <li>Avg Productivity: <span className={'bold-font'}>{getAvgProd()}/10</span></li>
+                                        <li>Avg Session: <span className={'bold-font'}>{getAvgSession()} min</span></li>
+                                        <li>Total Time: <span className={'bold-font'}>{getTotalHrs()} hr</span></li>
                                     </ul>
                                 </li>
                                 <li className="nav-item dropdown" style={{marginRight:'10px'}}>
@@ -113,7 +113,7 @@ const Navbar = (props) => {
                                         <button className='btn' onClick={deleteUser}>⚠️Delete User</button>
                                     </ul>
                                 </li>
-                                <li className="nav-item ms-auto btn " style={{color:'white', marginRight:'100px'}} onClick={logout}><a className='add-hover-effect'>Log Out</a></li>
+                                <li className="nav-item ms-auto btn" style={{color:'white', marginRight:'100px'}} onClick={logout}><a className='add-hover-effect'>Log Out</a></li>
                             </ul>
                         </>
                         :

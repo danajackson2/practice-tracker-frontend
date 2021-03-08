@@ -52,7 +52,7 @@ function CalendarPage(props){
     
     return(
         <div style={{display:'flex', alignItems:'center', flexDirection:'column', marginTop:'40px'}}>
-            <NavLink to='/performance' onClick={() => props.selectPerf(0)} className='btn add-hover-effect' style={{textDecoration:'none'}}><button className='btn btn-outline-light'>Add a Performance</button></NavLink>
+            <NavLink to='/performance' onClick={() => props.selectPerf(0)} className='add-hover-effect' style={{textDecoration:'none'}}><button className='btn btn-outline-light'>Add a Performance</button></NavLink>
             <div style={{height:'1000px'}}>
             <Calendar
                 localizer={localizer}

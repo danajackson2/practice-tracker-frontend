@@ -44,50 +44,50 @@ function SessionView(props){
     }
 
     return(
-        <div style={{borderStyle:'solid', borderWidth:'1px', color:'white', width:'800px', display:'flex', margin:'auto', flexDirection:'column', padding:'15px', marginTop:'40px', marginBottom:'50px'}}>
+        <div id={'session-view'}>
             <h4 style={{alignSelf:'center', marginBottom:'20px'}}>{`Session ${session.id}`}</h4>
-            <div style={{display:'flex', flexDirection:'row', justifyContent:'space-around'}}>
+            <div className={'prod-focus'}>
                 <h1>{date}</h1>
                 <h1>{session.duration}</h1>
             </div>
             <hr/>
-            <div style={{display:'flex', flexDirection:'row', minHeight:'80px'}}>
-                <h2 style={{width:'300px'}}>Longtones</h2>
+            <div className={'session-view-row'}>
+                <h2 className={'sv-header'}>Longtones</h2>
                 <p style={{width:'100%', fontSize:'22px'}}>{session.longtones.map(lt => `${lt.note} - `).join('').slice(0, -3)}</p>   
             </div>
-            <div style={{display:'flex', flexDirection:'row', minHeight:'80px', justifyContent:'space-between'}}>
-                <h2 style={{width:'300px'}}>Scales</h2>
+            <div className={'session-view-row'} >
+                <h2 className={'sv-header'}>Scales</h2>
                 <p style={{width:'100%', fontSize:'22px'}}>{session.scales.map(s => `${s.note} ${s.quality} - `).join('').slice(0, -3)}</p>    
             </div>
-            <div style={{display:'flex', flexDirection:'row', minHeight:'80px'}}>
-                <h2 style={{width:'300px'}}>Etudes</h2>
-                <ul style={{width:'100%', fontSize:'22px', listStyle:'none', paddingLeft:'0px'}}>{session.etudes.map(e => <li>{`${e.composer}, ${e.book} #${e.number}`}</li>)}</ul>    
+            <div className={'session-view-row'}>
+                <h2 className={'sv-header'}>Etudes</h2>
+                <ul className={'sv-item-list'}>{session.etudes.map(e => <li>{`${e.composer}, ${e.book} #${e.number}`}</li>)}</ul>    
             </div>          
-            <div style={{display:'flex', flexDirection:'row', minHeight:'80px'}}>
-                <h2 style={{width:'300px'}}>Pieces</h2>
-                <ul style={{width:'100%', fontSize:'22px', listStyle:'none', paddingLeft:'0px'}}>{session.pieces.map(p => <li>{`${p.composer}, ${p.title}`}</li>)}</ul>       
+            <div className={'session-view-row'}>
+                <h2 className={'sv-header'}>Pieces</h2>
+                <ul className={'sv-item-list'}>{session.pieces.map(p => <li>{`${p.composer}, ${p.title}`}</li>)}</ul>       
             </div>
-            <div style={{display:'flex', flexDirection:'row', minHeight:'80px'}}>
-                <h2 style={{width:'300px'}}>Excerpts</h2>
-                <ul style={{width:'100%', fontSize:'22px', listStyle:'none', paddingLeft:'0px'}}>{session.excerpts.map(e => <li>{`${e.composer}, ${e.work} - ${e.place}`}</li>)}</ul> 
+            <div className={'session-view-row'}>
+                <h2 className={'sv-header'}>Excerpts</h2>
+                <ul className={'sv-item-list'}>{session.excerpts.map(e => <li>{`${e.composer}, ${e.work} - ${e.place}`}</li>)}</ul> 
             </div>
-            <div style={{display:'flex', flexDirection:'row', marginBottom:'40px', minHeight:'200px'}}>
-                <div style={{display:'flex', flexDirection:'column', width:'100%', marginRight:'10px'}}>
+            <div className={'sv-notes-rec'}>
+                <div className={'sv-notes-rec-col'}>
                     <h2>Notes</h2>
-                    <p>{session.notes}</p> 
+                    <p style={{overflow:'auto'}}>{session.notes}</p> 
                 </div>
-                <div style={{display:'flex', flexDirection:'column', width:'100%', marginLeft:'10px'}}>
+                <div className={'sv-notes-rec-col'}>
                     <h2>Recordings</h2>
-                    <div>
+                    <div style={{overflow:'auto'}}>
                         {recordings?.map(rec => <Player key={rec.id} data={rec} deleteOption={false}/>)}
                     </div>
                 </div>
             </div>
-            <div style={{display:'flex', flexDirection:'row', justifyContent:'space-around'}}>
+            <div className={'prod-focus'}>
                 <h2>Productivity: {session.prod_rating}/10</h2>
                 <h2>Focus: {session.focus_rating}/10</h2>
             </div>
-            <button className={'btn btn-outline-light'} style={{marginTop:'40px', width:'30%', alignSelf:'center'}} onClick={deleteSession}>Delete Session</button>
+            <button className={'btn btn-outline-light del-sesh'} onClick={deleteSession}>Delete Session</button>
         </div>
     )
 }

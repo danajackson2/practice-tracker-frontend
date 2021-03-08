@@ -14,13 +14,13 @@ function Etudes(props){
     props.etudes?.forEach(etude => addToDropdown(etude))
 
     return (
-        <div style={{display: 'flex', flexDirection: 'column', marginBottom:'30px', minHeight:'150px'}}>
-            <div style={{display:'flex', flexDirection: 'row', justifyContent:'space-between'}}>
+        <div className={'new-session-item'}>
+            <div className={'new-session-item-row'}>
                 <h4>Etudes</h4>
-                <div style={{display:'flex', flexDirection: 'column', justifyContent:'flex-end'}}>
-                    <div style={{display: 'flex', justifyContent: 'flex-end', marginBottom:'10px'}}>
-                        <input name='composer' placeholder='Composer' style={{width:'220px', marginLeft:'10px'}}/>
-                        <input name='book' placeholder='Book' style={{width:'220px', marginLeft:'10px'}}/>    
+                <div className={'new-session-item-input'}>
+                    <div className={'input-container'} >
+                        <input className={'input-box'} name='composer' placeholder='Composer'/>
+                        <input className={'input-box'} name='book' placeholder='Book'/>    
                         <input name='number' type='Number' placeholder='#' style={{width:'70px', marginLeft:'10px'}}/>     
                         <button className='btn btn-sm btn-outline-light' style={{marginLeft:'10px'}} type='button' onClick={(e) => props.addRmvPieceExcEt(e, 'input', 'etudes')}>Add/Rmv</button>
                     </div>

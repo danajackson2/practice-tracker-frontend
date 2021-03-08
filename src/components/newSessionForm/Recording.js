@@ -44,7 +44,7 @@ class Recording extends React.Component {
 
     render(){
         return(
-            <div className='col' style={{display:'flex', flexDirection:'column'}}>
+            <div className='col' style={{display:'flex', flexDirection:'column', height:'300px'}}>
                 <h4 style={{alignSelf:'flex-start'}}>Recording</h4>
                 <div style={{display:'flex', alignItems:'center', justifyContent:'space-between'}}>
                     <input id='rec-title' placeholder='Recording name' onChange={e => this.handleRecName(e)}/>
@@ -57,7 +57,7 @@ class Recording extends React.Component {
                     : <img src={'/circle.png'} style={{height:'30px'}} alt={'circle'}/>   
                     }   
                     </div>
-                    <div id='players' style={{display:'flex', flexDirection:'column', marginTop:'10px'}}>
+                    <div id='players' style={{display:'flex', flexDirection:'column', marginTop:'10px', overflow:'auto'}}>
                         {this.state.rec_data.map(data => <Player data={data} deleteOption={true}/>)}
                     </div>
             </div>

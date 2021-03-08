@@ -1,4 +1,4 @@
-import React from 'react'
+import React, {useEffect}  from 'react'
 import Recording from '../components/newSessionForm/Recording' 
 import Timer from '../components/Timer'
 import Longtones from '../components/newSessionForm/Longtones'
@@ -14,6 +14,13 @@ import {connect} from 'react-redux'
 const BASE_URL = 'http://localhost:3000'
 
 function NewSession(props){
+
+    useEffect(() => {
+        return () => {
+            clearInterval(window.timer)
+            window.timer = null
+        }
+    }, [])
 
     const addRmvPieceExcEt = (e, type, key) => {
         if (type === 'input'){
@@ -54,8 +61,8 @@ function NewSession(props){
     
 
     return(
-        <div id='new-session-div' className='col-9' style={{width:'850px', margin:'40px 0px 50px 0px'}}>
-            <h1 style={{padding:'0px 0px 20px 0px'}}>Practice Session</h1>
+        <div id={'new-session-div'} className={'col-9'} style={{margin:'40px 0px 50px 0px'}}>
+            <h1 style={{paddingBottom:'20px'}}>Practice Session</h1>
             <div className='container'>
                 <div >
                     <div className='row justify-content-around'>
@@ -83,7 +90,7 @@ function NewSession(props){
                     <div className='row' style={{marginTop:'30px'}}>
                         <Ratings />
                     </div>
-                    <button type='button' onClick={() => saveSession(props.user_id, document.getElementById('current-date').textContent, document.getElementById('timer-count').textContent)} className='btn btn-outline-light' style={{width:'200px', margin:'50px 0px 30px 0px'}}>Save Session</button>
+                    <button type='button' onClick={() => saveSession(props.user_id, document.getElementById('current-date').textContent, document.getElementById('timer-count').textContent)} className='btn btn-outline-light save-sesh-btn'>Save Session</button>
                 </div>
             </div>
         </div>

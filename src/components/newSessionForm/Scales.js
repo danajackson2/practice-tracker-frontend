@@ -12,7 +12,7 @@ function Scales(props){
     }
 
     return (
-        <div style={{display: 'flex', flexDirection: 'row', marginBottom:'30px', justifyContent:'space-between'}}>
+        <div className={'new-session-item-row marg-30'}>
                 <div>
                     <h4>Scales</h4>
                 </div>

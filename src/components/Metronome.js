@@ -74,7 +74,7 @@ export default class Metronome extends Component {
         const { playing, bpm } = this.state
         
         return (
-            <div className='metronome' style={{display:'flex', flexDirection:'column', borderStyle: 'solid', borderWidth:'1px', borderRadius:'10px', marginBottom:'20px', minHeight:'250px', justifyContent:'space-between'}}>
+            <div className={'metronome toolbox-unit'} style={{display:'flex', flexDirection:'column', justifyContent:'space-between'}}>
                 <h4>Metronome</h4>
                 <hr style={{margin:'5px'}}></hr>
                 <div className='bpm-slider'>
