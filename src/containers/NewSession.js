@@ -41,32 +41,25 @@ function NewSession(props){
         Array.from(e.target.parentElement.querySelectorAll('input')).forEach(input => input.value = '')
     }
 
-    const saveSession = (e, user_id, date, duration) => {
-        if (e.keyCode !== 13) {
-            e.preventDefault()
-            fetch(`${BASE_URL}/sessions`, {
-                method: 'POST',
-                headers: {'content-type':'application/json', Authorization: `Bearer ${localStorage.token}`},
-                body: JSON.stringify({session: {...props.session, date: date, duration: duration, user_id: user_id}})
-            })
-            .then(res => res.json())
-            .then(data => props.updateSessions(data))
-            
-            props.clearSessionForm()
-            document.querySelectorAll('.lt-checkbox').forEach(box => box.checked = false)
-            document.querySelector('#notes-text-area').value = ''
-            document.querySelector('#players').innerHTML = ''
-            document.getElementById('timer-count').textContent = '00:00:00'
-            clearInterval(window.timer)
-            window.timer = null
-        }
+    const saveSession = (user_id, date, duration) => {
+     
+        fetch(`${BASE_URL}/sessions`, {
+            method: 'POST',
+            headers: {'content-type':'application/json', Authorization: `Bearer ${localStorage.token}`},
+            body: JSON.stringify({session: {...props.session, date: date, duration: duration, user_id: user_id}})
+        })
+        .then(res => res.json())
+        .then(data => props.updateSessions(data))
+
+        props.clearNewSession()
     }
+    
 
     return(
         <div id='new-session-div' className='col-9' style={{width:'850px', margin:'40px 0px 50px 0px'}}>
             <h1 style={{padding:'0px 0px 20px 0px'}}>Practice Session</h1>
             <div className='container'>
-                <form onSubmit={e => saveSession(e, props.user_id, document.getElementById('current-date').textContent, document.getElementById('timer-count').textContent)}>
+                <div >
                     <div className='row justify-content-around'>
                         <div className='col-5' >
                             <h3 id='current-date'>{String(new Date()).split(' ').slice(0,4).join(' ')}</h3>
@@ -92,8 +85,8 @@ function NewSession(props){
                     <div className='row' style={{marginTop:'30px'}}>
                         <Ratings />
                     </div>
-                    <button type='submit' className='btn btn-outline-light' style={{width:'200px', margin:'50px 0px 30px 0px'}}>Save Session</button>
-                </form>
+                    <button type='button' onClick={() => saveSession(props.user_id, document.getElementById('current-date').textContent, document.getElementById('timer-count').textContent)} className='btn btn-outline-light' style={{width:'200px', margin:'50px 0px 30px 0px'}}>Save Session</button>
+                </div>
             </div>
         </div>
     )

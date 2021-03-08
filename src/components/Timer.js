@@ -5,12 +5,14 @@ function Timer(){
     window.timer = null
     
     const updateTimer = () => { 
-        const currTime = document.getElementById('timer-count').textContent
-        const newSeconds = currTime.split(':')[0]*3600 + currTime.split(':')[1]*60 + currTime.split(':')[2]*1 + 1
-        const hr = ('0' + Math.floor(newSeconds/3600)).slice(-2)
-        const min = ('0' + Math.floor(newSeconds/60)).slice(-2)
-        const sec = ('0' + (newSeconds % 60)).slice(-2)
-        document.getElementById('timer-count').textContent = `${hr}:${min}:${sec}`
+        if (!!document.getElementById('timer-count')){
+            const currTime = document.getElementById('timer-count').textContent
+            const newSeconds = currTime.split(':')[0]*3600 + currTime.split(':')[1]*60 + currTime.split(':')[2]*1 + 1
+            const hr = ('0' + Math.floor(newSeconds/3600)).slice(-2)
+            const min = ('0' + Math.floor(newSeconds/60)).slice(-2)
+            const sec = ('0' + (newSeconds % 60)).slice(-2)
+            document.getElementById('timer-count').textContent = `${hr}:${min}:${sec}`
+        }
     }
 
     const startTimer = () => {

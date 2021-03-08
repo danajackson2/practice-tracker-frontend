@@ -2,12 +2,12 @@ import React from 'react'
 import Toolbox from './Toolbox'
 import NewSession from './NewSession'
 
-function SessionContainer(){
+function SessionContainer(props){
     return(
         <div className="container">
             <div className='row'>
                 <Toolbox />
-                <NewSession />
+                <NewSession clearNewSession={props.clearNewSession}/>
             </div>
         </div>
     )

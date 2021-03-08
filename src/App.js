@@ -1,7 +1,7 @@
 import './App.css'
 import { Route, withRouter} from 'react-router-dom'
 import {connect} from 'react-redux'
-import {setCurrentUser} from './redux/actions/actions'
+import {setCurrentUser, clearSessionForm} from './redux/actions/actions'
 import React from 'react'
 import Navbar from './containers/Navbar'
 import SessionContainer from './containers/SessionContainer'
@@ -30,6 +30,22 @@ class App extends React.Component {
       this.persistUser(token)
     }
   }
+
+  clearNewSession = () => {
+    clearInterval(window.timer)
+    window.timer = null
+    this.props.clearSessionForm()
+    if (!!document.getElementById('timer-count')){
+      document.getElementById('timer-count').textContent = '00:00:00'
+    }
+    document.querySelectorAll('.lt-checkbox').forEach(box => box.checked = false)
+    if (!!document.querySelector('#notes-text-area')) {
+      document.querySelector('#notes-text-area').value = ''
+    }
+    if (!!document.querySelector('#players')){
+      document.querySelector('#players').innerHTML = ''
+    }
+  }
   
   render(){
     return (
@@ -37,7 +53,7 @@ class App extends React.Component {
         <Navbar historyRouterProp={this.props.history}/>
         {localStorage.token && 
           <>
-            <Route exact path='/new-session' render={() => <SessionContainer />} />
+            <Route exact path='/new-session' render={routerProps => <SessionContainer onLeave={this.clearNewSession()} clearNewSession={this.clearNewSession}/>} />
             <Route exact path='/history' render={() => <CalendarPage historyRouterProp={this.props.history}/>} />
             <Route exact path='/history/:id' render={routerProps => {
               if (this.props.userSessions.map(s => s.id).includes(parseInt(routerProps.match.params.id))) {
@@ -58,4 +74,4 @@ const mapStateToProps = state => {
   }
 }
 
-export default withRouter(connect(mapStateToProps, {setCurrentUser})(App))
+export default withRouter(connect(mapStateToProps, {setCurrentUser, clearSessionForm})(App))
