@@ -2,8 +2,6 @@ import React from 'react'
 
 function Timer(){
     
-    window.timer = null
-    
     const updateTimer = () => { 
         if (!!document.getElementById('timer-count')){
             const currTime = document.getElementById('timer-count').textContent
@@ -16,7 +14,7 @@ function Timer(){
     }
 
     const startTimer = () => {
-        if (window.timer === null){ 
+        if (!window.timer){ 
             return window.timer = setInterval(updateTimer, 1000)
         }
     }
@@ -29,8 +27,8 @@ function Timer(){
     return(
         <div>
             <h3 id='timer-count'>{'00:00:00'}</h3> 
-            <button type='button' className='btn btn-outline-light' id='timer-button' onClick={startTimer}>Start</button>
-            <button type='button' className='btn btn-outline-light' id='timer-button' onClick={stopTimer}>Stop</button>
+            <button type='button' className='btn btn-outline-light timer-button' onClick={startTimer}>Start</button>
+            <button type='button' className='btn btn-outline-light timer-button' onClick={stopTimer}>Stop</button>
         </div>
     )
 }

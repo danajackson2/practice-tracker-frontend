@@ -35,15 +35,6 @@ function Tuner(){
             <hr style={{margin:'5px 15px 20px 15px'}}></hr>
             {tunerOn && <button className={'btn btn-outline-light'} style={{marginBottom:'10px'}} onClick={emptyTunerDiv}>Turn off</button>}
             <div id='tuner-div' style={{minHeight:'150px'}}></div>
-            {/* {tunerOn && 
-                <div style={{display:'flex', justifyContent:'center'}}>
-                    <div style={{position: 'relative', height:'30px', width:'240px', backgroundColor:'#1C3334', marginBottom:'5px'}}>
-                        <div id={'neg-cents'} style={{height:'30px', width:'20px', position: 'absolute', top:'0', left:'0', backgroundColor:'#DA7B93' }}></div>
-                        <div style={{height:'30px', width:'2px', position: 'absolute', top:'0', left:'119px', backgroundColor:'white' }}></div>
-                        <div id={'pos-cents'} style={{height:'30px', width:'20px', position: 'absolute', top:'0', left:'120px', backgroundColor:'#DA7B93' }}></div>
-                    </div>
-                </div>
-            } */}
         </div>
     )
 }

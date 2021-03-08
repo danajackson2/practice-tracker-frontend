@@ -53,7 +53,8 @@ const initialState = {
         piece: '',
         event: ''
     },
-    selectedPerf : 0
+    selectedPerf: 0,
+    sortListBy : 'date'
 }
 
 const someReducer = (state=initialState, action) => {
@@ -146,6 +147,10 @@ const someReducer = (state=initialState, action) => {
         case 'SELECT_PERF':
             return {
                 ...state, selectedPerf: action.perf_id
+            }
+        case 'CHANGE_SORT_LIST_BY':
+            return {
+                ...state, sortListBy: action.param
             }
         default :
             return state

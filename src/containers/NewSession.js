@@ -42,7 +42,6 @@ function NewSession(props){
     }
 
     const saveSession = (user_id, date, duration) => {
-     
         fetch(`${BASE_URL}/sessions`, {
             method: 'POST',
             headers: {'content-type':'application/json', Authorization: `Bearer ${localStorage.token}`},
@@ -50,7 +49,6 @@ function NewSession(props){
         })
         .then(res => res.json())
         .then(data => props.updateSessions(data))
-
         props.clearNewSession()
     }
     

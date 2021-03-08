@@ -93,3 +93,10 @@ export const selectPerf = (perf_id) => {
         perf_id: perf_id
     }
 }
+
+export const changeSortListBy = (param) => {
+    return {
+        type: 'CHANGE_SORT_LIST_BY',
+        param: param
+    }
+}

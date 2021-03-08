@@ -51,7 +51,7 @@
   text-align: center;
 }
 
-#timer-button {
+.timer-button {
   width:25%; 
   margin:5px;
   float: left

@@ -43,37 +43,30 @@ const Navbar = (props) => {
     }
 
     const getAvgFocus = () => {
-        if (props.current_user.userSessions[0].focus_rating !== null) {
-            let focus = props.current_user.userSessions.map(sesh => sesh.focus_rating).reduce((a,b) => a+b, 0)/props.current_user.userSessions.length
-            return focus.toFixed(2)
-        }
+            let focus = props.current_user.userSessions?.map(sesh => sesh.focus_rating).reduce((a,b) => a+b, 0)/props.current_user.userSessions?.length
+            return !!focus ? focus.toFixed(2) : 0
     }
 
     const getAvgProd = () => {
-        if (props.current_user.userSessions[0].prod_rating !== null) {
-            let prod = props.current_user.userSessions.map(sesh => sesh.prod_rating).reduce((a,b) => a+b, 0)/props.current_user.userSessions.length
-            return prod.toFixed(2)
-        }
+            let prod = props.current_user.userSessions?.map(sesh => sesh.prod_rating).reduce((a,b) => a+b, 0)/props.current_user.userSessions?.length
+            return !!prod ? prod.toFixed(2) : 0
     }
 
     const getAvgSession = () => {
-        if (props.current_user.userSessions[0].duration !== '') {
-            let minsArr = props.current_user.userSessions.map(sesh => {
+            let minsArr = props.current_user.userSessions?.map(sesh => {
                 let time = sesh.duration.split(':')
                 return time[2]/60 + time[1]/1 + time[0]*60  
             })
-            return Math.round(minsArr.reduce((a,b) => a+b)/minsArr.length)
-        }
+            return minsArr?.length > 0 ? Math.round(minsArr.reduce((a,b) => a+b)/minsArr.length) : 0
     }
 
     const getTotalHrs = () => {
-        if (props.current_user.userSessions[0].duration !== '') {
-            let minsArr = props.current_user.userSessions.map(sesh => {
+            let minsArr = props.current_user.userSessions?.map(sesh => {
                 let time = sesh.duration.split(':')
                 return time[2]/60 + time[1]/1 + time[0]*60  
             })
-            return Math.round(minsArr.reduce((a,b) => a+b)/60)
-        }
+            return minsArr?.length > 0 ? Math.round(minsArr.reduce((a,b) => a+b)/60) : 0
+
     }
     const {username, instrument} = props.current_user
     
@@ -90,12 +83,12 @@ const Navbar = (props) => {
                     <div className="collapse navbar-collapse" id="navbarSupportedContent">
                         {localStorage.token
                         ? <>
-                            <div className="navbar-nav me-auto mb-2 mb-lg-0">
+                            <div className="navbar-nav me-auto mb-2 mb-lg-0" style={{width:'400px'}}>
                                 <NavLink to='/new-session' className='btn add-hover-effect' style={{marginLeft:'100px'}}>New Session</NavLink>
                                 <NavLink to='/history' className='btn add-hover-effect' style={{textDecoration:'none'}}>History</NavLink>
                             </div >
                             <h3 style={{height:'30px', overflow:'hidden', maxWidth:'600px'}}>{username ? `Hi ${username }, time to practice your ${instrument}!` : ''}</h3>
-                            <ul className="navbar-nav ms-auto mb-2 mb-lg-0">
+                            <ul className="navbar-nav ms-auto mb-2 mb-lg-0" style={{width:'400px'}}>
                                  <li className="nav-item dropdown" style={{marginRight:'20px'}}>
                                     <span className="nav-link dropdown-toggle btn navbar-drop" data-bs-toggle="dropdown" aria-expanded="false">
                                         Stats

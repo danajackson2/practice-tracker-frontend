@@ -1,5 +1,5 @@
 import React from 'react'
-import {handlePerfData, sortPerfList, updatePerformances, selectPerf} from '../redux/actions/actions'
+import {handlePerfData, sortPerfList, updatePerformances, selectPerf, changeSortListBy} from '../redux/actions/actions'
 import {connect} from 'react-redux'
 
 const BASE_URL = 'http://localhost:3000'
@@ -27,15 +27,15 @@ function Performance(props){
     }
 
     const sortBy = (param) => {
-        let sorted = props.userPerformances.sort((a, b) => a[param].localeCompare(b[param]))
-        props.sortPerfList(sorted)
+        return props.userPerformances?.sort((a, b) => a[param]?.localeCompare(b[param]))
     }
 
     const formatDate = date => {
         if (date !== '' && date !== null){
             let day = ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'][new Date(date).getDay()]
             let month = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'][new Date(date).getMonth()]
-            let dayNum = date.split('-')[2]?.replace('0', '')
+            let dayNum = (0 + date.split('-')[2]).slice(-2)
+            dayNum = dayNum[0] === '0' ? dayNum.slice(1) : dayNum
             return `${day} ${month} ${dayNum}, ${date.split('-')[0]}`        
         }
     }
@@ -53,12 +53,12 @@ function Performance(props){
             <h1 style={{marginTop:'60px'}}>All Performances</h1>
             <div style={{display:'flex', flexDirection:'column', width:'1000px', margin:'20px'}}>
                 <div style={{display:'flex', borderBottom: '1px solid white'}}>
-                    <div onClick={() => sortBy('date')} className={'add-hover-effect'} style={{width:'200px'}}>Date <span style={{fontSize:'16px'}}>▽</span></div>
-                    <div onClick={() => sortBy('composer')} className={'add-hover-effect'} style={{width:'250px'}}>Composer <span style={{fontSize:'16px'}}>▽</span></div>
-                    <div onClick={() => sortBy('piece')} className={'add-hover-effect'} style={{width:'250px'}}>Piece <span style={{fontSize:'16px'}}>▽</span></div>
-                    <div onClick={() => sortBy('event')} className={'add-hover-effect'} style={{width:'300px'}}>Event <span style={{fontSize:'16px'}}>▽</span></div>
+                    <div onClick={() => props.changeSortListBy('date')} className={'add-hover-effect'} style={{width:'200px'}}>Date <span style={{fontSize:'16px'}}>▽</span></div>
+                    <div onClick={() => props.changeSortListBy('composer')} className={'add-hover-effect'} style={{width:'250px'}}>Composer <span style={{fontSize:'16px'}}>▽</span></div>
+                    <div onClick={() => props.changeSortListBy('piece')} className={'add-hover-effect'} style={{width:'250px'}}>Piece <span style={{fontSize:'16px'}}>▽</span></div>
+                    <div onClick={() => props.changeSortListBy('event')} className={'add-hover-effect'} style={{width:'300px'}}>Event <span style={{fontSize:'16px'}}>▽</span></div>
                 </div>
-                {props.userPerformances.map(perf => {
+                {sortBy(props.sortListBy).map(perf => {
                     return perf.id === props.selectedPerfId
                     ? (
                         <div id={`perf${perf.id}`} style={{display:'flex', fontSize:'20px', overflow:'hidden', backgroundColor:'#597387'}}>
@@ -87,8 +87,9 @@ const mapStateToProps = state => {
         user_id: state.current_user.user_id,
         performance: state.performance,
         userPerformances: state.current_user.userPerformances,
-        selectedPerfId : state.selectedPerf
+        selectedPerfId: state.selectedPerf,
+        sortListBy: state.sortListBy
     }
 }
 
-export default connect(mapStateToProps, {handlePerfData, sortPerfList, updatePerformances, selectPerf})(Performance)
+export default connect(mapStateToProps, {handlePerfData, sortPerfList, updatePerformances, selectPerf, changeSortListBy})(Performance)
