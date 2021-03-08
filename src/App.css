@@ -153,7 +153,7 @@
 }
   .bpm-slider input {
       width: 100%;
-      margin: 10px;
+      margin-bottom: 10px;
   }
 
   .bpm-input {
@@ -388,4 +388,10 @@
     margin-top: 40px;
     width: 30%;
     align-self: center;
+  }
+
+  .met-btn {
+    width: 73px;
+    align-self: center;
+    padding: 6px 0px;
   }
