@@ -13,7 +13,7 @@ PracTrac is a practice tracker for musicians. Users can record details of each p
 
 ## Getting Started
 
-To get a local copy up and running follow these simple example steps.
+To get a local copy up and running follow these simple steps.
 1. Fork and clone this repo (described below) and the [backend repo](github.com/danajackson2/practice-tracker-backend)
 2. In this repo's directory run npm install
 3. Then run npm start. The site will automatically load in your browser at localhost:3001/
