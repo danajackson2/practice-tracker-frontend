@@ -397,3 +397,21 @@
     padding: 6px 0px;
     margin-bottom:25px;
   }
+
+  #custom-style .rbc-show-more {
+    background-color: #376E6F;
+    color: white;
+  }
+  #custom-style .rbc-toolbar-label {
+    font-size: 50px;
+    text-align: right;
+  }
+  #custom-style .rbc-btn-group {
+    background-color: #376E6F;
+  }
+  #custom-style button {
+    color: white;
+  }
+  #custom-style .rbc-today {
+    background-color: #376E6F;
+  }

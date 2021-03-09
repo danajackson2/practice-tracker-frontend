@@ -47,9 +47,11 @@ function CalendarPage(props){
     }
 
     const backgroundColor = (e) => {
-        return e.title.includes('Performance') && {style:{backgroundColor: '#2E151B'}}
+        return e.title.includes('Performance') 
+        ? {style:{backgroundColor: '#2E151B'}}
+        : {style:{backgroundColor: '#1C3334'}}
     }
-    
+
     return(
         <div style={{display:'flex', alignItems:'center', flexDirection:'column', marginTop:'40px'}}>
             <NavLink to='/performance' onClick={() => props.selectPerf(0)} className='add-hover-effect' style={{textDecoration:'none'}}><button className='btn btn-outline-light'>Add a Performance</button></NavLink>
@@ -59,11 +61,12 @@ function CalendarPage(props){
                 events={createEvents()}
                 startAccessor="start"
                 endAccessor="end"
-                style={{ height: '750px', width:'900px' }}
+                style={{ height: '750px', width:'900px'}}
                 onSelectEvent={selectEvent}
                 popup={true}
                 views={['month']}
                 eventPropGetter={backgroundColor}
+                elementProps={{id:'custom-style'}}
             />
             </div>
         </div>
