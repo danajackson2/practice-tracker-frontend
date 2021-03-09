@@ -74,19 +74,19 @@ export default class Metronome extends Component {
         const { playing, bpm } = this.state
         
         return (
-            <div className={'metronome toolbox-unit'} style={{display:'flex', flexDirection:'column', justifyContent:'space-between'}}>
+            <div className={'metronome toolbox-unit'} >
                 <h4>Metronome</h4>
-                <hr style={{margin:'5px'}}></hr>                
-                <button type='button' className='btn btn-outline-light met-btn' onClick={this.startStop}>
-                    {playing ? 'Turn off' : 'Turn on'}
-                </button>
-                <div className='bpm-slider'>
-                    <h5>{bpm} BPM </h5>
-                    <input type='range' min='40' max='208' value={bpm} onChange={this.handleBpmChange}/>
-                    <form className='bpm-input' style={{display:'flex', flexDirection:'row', justifyContent:'space-around'}}>
-                        <input style={{width:'100px'}} type='number' value={bpm} onChange={this.handleBpmChange} />
-                    </form>
-                </div>
+                <hr></hr>    
+                    <button type='button' className='btn btn-outline-light met-btn' onClick={this.startStop}>
+                        {playing ? 'Turn off' : 'Turn on'}
+                    </button>
+                    <div className='bpm-slider'>
+                        <h5>{bpm} BPM </h5>
+                        <input type='range' min='40' max='208' value={bpm} onChange={this.handleBpmChange}/>
+                        <form className='bpm-input' style={{display:'flex', flexDirection:'row', justifyContent:'space-around'}}>
+                            <input style={{width:'100px'}} type='number' value={bpm} onChange={this.handleBpmChange} />
+                        </form>
+                    </div>
             </div>
         )
     }

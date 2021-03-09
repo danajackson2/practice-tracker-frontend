@@ -31,10 +31,11 @@ function Tuner(){
 
     return(
         <div className={'toolbox-unit'} style={{minHeight:'320px'}}>
-            <h4 style={{marginTop:'10px'}}>Tuner</h4>
-            <hr style={{margin:'5px 15px 20px 15px'}}></hr>
+            <h4>Tuner</h4>
+            <hr></hr>
             {tunerOn && <button className={'btn btn-outline-light'} style={{marginBottom:'10px'}} onClick={emptyTunerDiv}>Turn off</button>}
             <div id='tuner-div' style={{minHeight:'150px'}}></div>
+            
         </div>
     )
 }

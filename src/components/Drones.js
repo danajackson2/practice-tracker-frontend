@@ -76,9 +76,9 @@ function Drones(){
 
     return(
         <div className={'toolbox-unit'}>
-            <h4 style={{marginTop:'10px'}}>Drones</h4>
+            <h4 >Drones</h4>
             <p>{'( A 440 )'}</p>
-            <hr style={{margin:'5px 15px 15px 15px'}}></hr>
+            <hr></hr>
             <div style={{display:'flex', flexDirection:'column', justifyContent:'space-around'}}>
                 <div style={{display:'flex', flexDirection:'row', justifyContent:'space-around'}}>
                     <div className={'note-div'} id={'C'} onClick={(e) => droneOnOff(e, 'C')}>C</div>

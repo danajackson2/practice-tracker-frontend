@@ -42,7 +42,6 @@
   border-style: solid;
   border-width:1px;
   border-color: white;
-
 }
 
 #new-session-div {
@@ -288,6 +287,7 @@
     border-radius: 10px;
     min-height: 250px;
     margin-bottom: 20px;
+    padding:10px
   }
 
   .bold-font {
@@ -295,10 +295,11 @@
   }
 
   .user-msg {
-    height: 30px;
+    height: 40px;
     overflow: hidden;
     max-width: 600px;
     text-align: center;
+    margin: 0;
   }
 
   .save-sesh-btn {
@@ -394,4 +395,5 @@
     width: 73px;
     align-self: center;
     padding: 6px 0px;
+    margin-bottom:25px;
   }
