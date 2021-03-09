@@ -18,7 +18,10 @@ To get a local copy up and running follow these simple steps.
 2. In this repo's directory run npm install
 3. Then run npm start. The site will automatically load in your browser at localhost:3001/
 
-
+## Screenshots
+![practrac welcome](blob:https://imgur.com/fb06313d-c4bd-4e9a-b5e5-63141fd33a4f)
+![practrac homepage](https://i.imgur.com/iXzHaF6.png)
+![practrac calendar](https://i.imgur.com/4LmV94j.png)
 
 ## Contributing
 
