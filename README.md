@@ -1,6 +1,6 @@
 ## About The Project
 
-[PracTrac](practrac.herokuapp.com)
+PracTrac - [practrac.herokuapp.com](http://practrac.herokuapp.com)
 
 PracTrac is a practice tracker for musicians. Users can record details of each practice session, including longtones, scales, etudes, pieces, and excerpts. They can also take notes about the session and make short recordings for later reference. A calendar view shows all sessions for easy reference and navigation. Users can also catalog pieces performed and sort them by date, composer, piece, or event. These also show up on the calendar.
 
