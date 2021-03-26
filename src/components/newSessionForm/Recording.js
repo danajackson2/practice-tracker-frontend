@@ -1,5 +1,6 @@
 import React from 'react'
 import Player from './Player'
+import {connect} from 'react-redux'
 // npm install mic-recorder-to-mp3
 const MicRecorder = require('mic-recorder-to-mp3')
 const recorder = new MicRecorder({bitRate: 128})
@@ -23,6 +24,7 @@ class Recording extends React.Component {
         .then(([buffer, blob]) => {
             formData.append('data[recording]', blob)
             formData.append('data[name]', this.state.rec_name)
+            formData.append('data[userId]', this.props.userId)
         })
         .then(() => {
             fetch('http://localhost:3000/recordings',{
@@ -66,5 +68,10 @@ class Recording extends React.Component {
     }
 }
 
+const mapStateToProps = state => {
+    return {
+        userId: state.current_user.user_id
+    }
+}
 
-export default Recording
+export default connect(mapStateToProps)(Recording)
